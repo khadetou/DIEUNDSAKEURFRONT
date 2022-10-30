@@ -1,9 +1,18 @@
+import { Dispatch, FC } from "react";
 import PageSidebar from "./page-sidebar";
-
-const PageBody = () => {
+interface PageBodyProps {
+  open: boolean;
+  setOpen: Dispatch<React.SetStateAction<boolean>>;
+  isTabletOrMobile: boolean;
+}
+const PageBody: FC<PageBodyProps> = ({ open, setOpen, isTabletOrMobile }) => {
   return (
     <div className="page-body-wrapper">
-      <PageSidebar />
+      <PageSidebar
+        open={open}
+        setOpen={setOpen}
+        isTabletOrMobile={isTabletOrMobile}
+      />
     </div>
   );
 };

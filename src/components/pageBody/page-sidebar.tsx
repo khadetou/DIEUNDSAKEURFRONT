@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, FC, useState } from "react";
 import {
   Airplay,
   BarChart2,
@@ -13,8 +13,17 @@ import Authentication from "./dropItems/Authentication";
 import ManageUsers from "./dropItems/ManageUsers";
 import Properties from "./dropItems/Properties";
 import Types from "./dropItems/Types";
+interface PageSidebarProps {
+  open: boolean;
+  setOpen: Dispatch<React.SetStateAction<boolean>>;
+  isTabletOrMobile: boolean;
+}
 
-const PageSidebar = () => {
+const PageSidebar: FC<PageSidebarProps> = ({
+  open,
+  setOpen,
+  isTabletOrMobile,
+}) => {
   // REACT USESTATES
 
   const [active, setActive] = useState({
@@ -27,7 +36,11 @@ const PageSidebar = () => {
   // FUNCTIONS
 
   return (
-    <div className="page-sidebar">
+    <div
+      className={`page-sidebar ${isTabletOrMobile && "close_icon"} ${
+        open && "close_icon"
+      } `}
+    >
       <div className="logo-wrap">
         <a href="index.html">
           <img
