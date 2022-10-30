@@ -13,7 +13,7 @@ const SEO: FC<SeoProps> = ({
   description = "Marché Sénégale, achetez vos denréé Alimentaire à bas prix",
   author = "Khadetou Dianifabe",
   meta,
-  title = "Marché Sénégal, Achetez vite vos denrées alimentaires",
+  title = "Dieundsakeur",
 }) => {
   const metaData = [
     {
