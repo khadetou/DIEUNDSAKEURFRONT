@@ -3,6 +3,8 @@ import MessageChat from "./dropdown/message-chat";
 import FileAttachement from "./dropdown/FileAttachement";
 import Notification from "./dropdown/Notification";
 import Profile from "./dropdown/Profile";
+import Link from "next/link";
+
 const NavRight = () => {
   return (
     <div className="nav-right col p-0">
@@ -20,7 +22,10 @@ const NavRight = () => {
           </div>
         </li>
         <li>
-          <a href="#!" onClick={() => "javascript:toggleFullScreen()"}>
+          <a
+            href="#!"
+            onClick={() => console.log("javascript:toggleFullScreen()")}
+          >
             <Maximize />
           </a>
         </li>

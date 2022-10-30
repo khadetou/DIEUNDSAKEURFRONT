@@ -1,3 +1,4 @@
+import PageBody from "components/pageBody";
 import PageHeader from "components/pageheader";
 import SEO from "components/SEO";
 import React from "react";
@@ -7,6 +8,7 @@ const Dashboard = () => {
     <div className="page-wrapper">
       <SEO />
       <PageHeader />
+      <PageBody />
     </div>
   );
 };

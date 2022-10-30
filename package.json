@@ -23,7 +23,9 @@
     "react-color": "^2.19.3",
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
-    "react-redux": "^8.0.4"
+    "react-icons": "^4.6.0",
+    "react-redux": "^8.0.4",
+    "react-slidedown": "^2.4.7"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",

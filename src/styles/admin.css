@@ -22259,7 +22259,8 @@ label {
   position: relative;
   color: #586167;
   padding: 12px 20px;
-  display: block;
+  display: flex;
+  align-items: center;
   border-radius: 0 20px 20px 0;
   text-decoration: unset;
   font-weight: 500;

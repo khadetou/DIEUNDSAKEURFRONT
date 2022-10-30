@@ -24,7 +24,9 @@ specifiers:
   react-color: ^2.19.3
   react-dom: 18.2.0
   react-feather: ^2.0.10
+  react-icons: ^4.6.0
   react-redux: ^8.0.4
+  react-slidedown: ^2.4.7
   tailwindcss: ^3.2.1
   typescript: 4.8.4
 
@@ -43,7 +45,9 @@ dependencies:
   react-color: 2.19.3_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-feather: 2.0.10_react@18.2.0
+  react-icons: 4.6.0_react@18.2.0
   react-redux: 8.0.4_nsgh7lqw2e2kb5wanadocemtdi
+  react-slidedown: 2.4.7_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@types/js-cookie': 3.0.2
@@ -2057,6 +2061,14 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-icons/4.6.0_react@18.2.0:
+    resolution: {integrity: sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -2095,6 +2107,17 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
+  /react-slidedown/2.4.7_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-HGDfrqo70r1WVE0DwrySPdCT27/2wcZaJYh5kOnmuPSCtjDDJrNkDdn4Ep/cma2VVfwupeAGhbc2pbrGThU6VQ==}
+    peerDependencies:
+      react: ^16.3.0 || 17
+      react-dom: ^16.3.0 || 17
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.4.0
     dev: false
 
   /react/18.2.0:
