@@ -1,16 +1,17 @@
 import React from "react";
-import TopBody from "./top-body";
+import Topbody from "./top-body";
 
-const BodyAddProperty = () => {
+const BodyEditProperty = () => {
   return (
     <div className="page-body">
-      <TopBody />
+      <Topbody />
+      BodyEditProperty
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12">
             <div className="card">
               <div className="card-header pb-0">
-                <h5>Add property details</h5>
+                <h5>Edit property details</h5>
               </div>
               <div className="card-body admin-form">
                 <form className="row gx-3">
@@ -19,7 +20,7 @@ const BodyAddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="office,villa,apartment"
+                      value="villa"
                       required
                     />
                   </div>
@@ -30,7 +31,7 @@ const BodyAddProperty = () => {
                         className="dropdown-toggle font-rubik"
                         data-bs-toggle="dropdown"
                       >
-                        <span>For Sale</span>{" "}
+                        <span>For Rent</span>{" "}
                         <i className="fas fa-angle-down"></i>
                       </span>
                       <div className="dropdown-menu text-start">
@@ -44,7 +45,7 @@ const BodyAddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="$2800"
+                      value="$3000"
                       required
                     />
                   </div>
@@ -55,9 +56,10 @@ const BodyAddProperty = () => {
                         className="dropdown-toggle font-rubik"
                         data-bs-toggle="dropdown"
                       >
-                        <span>1</span> <i className="fas fa-angle-down"></i>
+                        <span>3</span> <i className="fas fa-angle-down"></i>
                       </span>
                       <div className="dropdown-menu text-start">
+                        <a className="dropdown-item">1</a>
                         <a className="dropdown-item">2</a>
                         <a className="dropdown-item">3</a>
                         <a className="dropdown-item">4</a>
@@ -73,9 +75,10 @@ const BodyAddProperty = () => {
                         className="dropdown-toggle font-rubik"
                         data-bs-toggle="dropdown"
                       >
-                        <span>1</span> <i className="fas fa-angle-down"></i>
+                        <span>2</span> <i className="fas fa-angle-down"></i>
                       </span>
                       <div className="dropdown-menu text-start">
+                        <a className="dropdown-item">1</a>
                         <a className="dropdown-item">2</a>
                         <a className="dropdown-item">3</a>
                         <a className="dropdown-item">4</a>
@@ -94,6 +97,7 @@ const BodyAddProperty = () => {
                         <span>1</span> <i className="fas fa-angle-down"></i>
                       </span>
                       <div className="dropdown-menu text-start">
+                        <a className="dropdown-item">1</a>
                         <a className="dropdown-item">2</a>
                         <a className="dropdown-item">3</a>
                         <a className="dropdown-item">4</a>
@@ -107,16 +111,12 @@ const BodyAddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="85 sq ft"
+                      value="85 sq ft"
                     />
                   </div>
                   <div className="form-group col-sm-4">
                     <label>Price</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="$3000"
-                    />
+                    <input type="text" className="form-control" value="$3000" />
                   </div>
                   <div className="form-group col-sm-4">
                     <label>Agencies</label>
@@ -137,23 +137,23 @@ const BodyAddProperty = () => {
                   </div>
                   <div className="form-group col-sm-12">
                     <label>Description</label>
-                    <textarea className="form-control" rows={4}></textarea>
+                    <textarea className="form-control" rows={4}>
+                      “Air conditioning unit, new furnace, all appliances
+                      included. Basement walks out to fenced backyard. Huge deck
+                      in back. Lots of updates.”
+                    </textarea>
                   </div>
                   <div className="form-group col-sm-6">
                     <label>Address</label>
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Address of your property"
+                      value="Mina Road, Bur Dubai, Dubai, United Arab Emirates"
                     />
                   </div>
                   <div className="form-group col-sm-6">
                     <label>Zip code</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="39702"
-                    />
+                    <input type="text" className="form-control" value="39702" />
                   </div>
                   <div className="form-group col-sm-4">
                     <label>Any Country</label>
@@ -196,7 +196,7 @@ const BodyAddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="landmark place name"
+                      value="Bur Dubai, Dubai"
                     />
                   </div>
                 </form>
@@ -219,7 +219,7 @@ const BodyAddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="mp4 video link"
+                      value="https://youtu.be/ATSgwZXOuUo12"
                     />
                   </div>
                   <div className="form-group col-sm-12 mb-0">
@@ -315,7 +315,7 @@ const BodyAddProperty = () => {
                       type="button"
                       className="btn btn-pill btn-gradient color-4"
                     >
-                      Submit
+                      Save
                     </button>
                     <button
                       type="button"
@@ -334,4 +334,4 @@ const BodyAddProperty = () => {
   );
 };
 
-export default BodyAddProperty;
+export default BodyEditProperty;

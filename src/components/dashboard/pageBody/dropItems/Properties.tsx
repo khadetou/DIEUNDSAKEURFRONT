@@ -73,10 +73,13 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
             </Link>
           </li>
           <li>
-            <a href="edit-property.html">
+            <Link
+              href="/dashboard/edit-property"
+              className={pathname.endsWith("edit-property") ? "active" : ""}
+            >
               <ChevronsRight />
               edit property
-            </a>
+            </Link>
           </li>
           <li>
             <a href="listing.html">
