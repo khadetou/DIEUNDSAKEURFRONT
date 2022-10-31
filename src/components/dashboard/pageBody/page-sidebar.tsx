@@ -1,4 +1,4 @@
-import { Dispatch, FC, useState } from "react";
+import { Dispatch, FC, useState, useEffect } from "react";
 import {
   Airplay,
   BarChart2,
@@ -7,12 +7,14 @@ import {
   CreditCard,
 } from "react-feather";
 import { FaAngleRight } from "react-icons/fa";
-
+import { useRouter } from "next/router";
 import Agents from "./dropItems/Agents";
 import Authentication from "./dropItems/Authentication";
 import ManageUsers from "./dropItems/ManageUsers";
 import Properties from "./dropItems/Properties";
 import Types from "./dropItems/Types";
+import Link from "next/link";
+
 interface PageSidebarProps {
   open: boolean;
   setOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -25,7 +27,6 @@ const PageSidebar: FC<PageSidebarProps> = ({
   isTabletOrMobile,
 }) => {
   // REACT USESTATES
-
   const [active, setActive] = useState({
     properties: false,
     manage: false,
@@ -33,7 +34,8 @@ const PageSidebar: FC<PageSidebarProps> = ({
     auth: false,
     type: false,
   });
-  // FUNCTIONS
+
+  const { pathname } = useRouter();
 
   return (
     <div
@@ -71,13 +73,18 @@ const PageSidebar: FC<PageSidebarProps> = ({
         <div id="mainsidebar">
           <ul className="sidebar-menu custom-scrollbar">
             <li className="sidebar-item">
-              <a href="index.html" className="sidebar-link only-link">
+              <Link
+                href="/dashboard"
+                className={`sidebar-link only-link ${
+                  pathname.endsWith("dashboard") && "active"
+                }`}
+              >
                 <Airplay />
                 <span>Dashboard</span>
                 <div className="according-menu">
                   <FaAngleRight />
                 </div>
-              </a>
+              </Link>
             </li>
 
             <Properties active={active} setActive={setActive} />

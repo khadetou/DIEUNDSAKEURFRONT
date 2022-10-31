@@ -2,6 +2,8 @@ import { Dispatch, FC, SetStateAction, useState } from "react";
 import { ChevronsRight, Grid } from "react-feather";
 import { FaAngleRight } from "react-icons/fa";
 import SlideDown from "react-slidedown";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Active = {
   properties: boolean;
@@ -36,14 +38,17 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
     setOpen(!open);
   };
 
+  const { pathname } = useRouter();
+
   return (
     <li
       className="sidebar-item"
       onClick={() => setActive({ ...proactive, ["properties"]: true })}
     >
       <a
-        href="#!"
-        className={`sidebar-link ${active.properties && "active"}`}
+        className={`sidebar-link ${active.properties && "active"} ${
+          pathname.endsWith("add-property") ? "active" : ""
+        }`}
         onClick={toggleSidebarItems}
       >
         <Grid />
@@ -59,10 +64,13 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content pure-menu-list dropdown-list ">
           <li>
-            <a href="add-property.html">
+            <Link
+              href="/dashboard/add-property"
+              className={pathname.endsWith("add-property") ? "active" : ""}
+            >
               <ChevronsRight />
               add property
-            </a>
+            </Link>
           </li>
           <li>
             <a href="edit-property.html">

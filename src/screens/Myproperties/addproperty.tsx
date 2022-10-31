@@ -1,17 +1,21 @@
+import Layout from "components/dashboard/pageBody/Layout";
 import { Dispatch, FC } from "react";
-import Body from "./Body";
-import Layout from "./Layout";
-interface PageBodyProps {
+
+interface AddpropertyBodyProps {
   open: boolean;
   setOpen: Dispatch<React.SetStateAction<boolean>>;
   isTabletOrMobile: boolean;
 }
-const PageBody: FC<PageBodyProps> = ({ open, setOpen, isTabletOrMobile }) => {
+const AddpropertyBody: FC<AddpropertyBodyProps> = ({
+  open,
+  setOpen,
+  isTabletOrMobile,
+}) => {
   return (
     <Layout open={open} setOpen={setOpen} isTabletOrMobile={isTabletOrMobile}>
-      <Body />
+      this is the body
     </Layout>
   );
 };
 
-export default PageBody;
+export default AddpropertyBody;
