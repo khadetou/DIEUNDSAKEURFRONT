@@ -1,6 +1,6 @@
 import Layout from "components/dashboard/Layout";
 import PageBody from "components/dashboard/pageBody";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useMediaQuery } from "react-responsive";
 

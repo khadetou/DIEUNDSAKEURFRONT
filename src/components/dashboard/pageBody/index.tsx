@@ -1,4 +1,7 @@
 import { Dispatch, FC } from "react";
+import Body from "./Body";
+import Layout from "./Layout";
+
 import PageSidebar from "./page-sidebar";
 interface PageBodyProps {
   open: boolean;
@@ -7,13 +10,9 @@ interface PageBodyProps {
 }
 const PageBody: FC<PageBodyProps> = ({ open, setOpen, isTabletOrMobile }) => {
   return (
-    <div className="page-body-wrapper">
-      <PageSidebar
-        open={open}
-        setOpen={setOpen}
-        isTabletOrMobile={isTabletOrMobile}
-      />
-    </div>
+    <Layout open={open} setOpen={setOpen} isTabletOrMobile={isTabletOrMobile}>
+      <Body />
+    </Layout>
   );
 };
 

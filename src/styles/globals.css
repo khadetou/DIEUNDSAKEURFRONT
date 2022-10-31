@@ -3,6 +3,13 @@
 @import "./animate.css";
 @import "./all.min.css";
 
+a.admin {
+  color: var(--theme-default7);
+  text-decoration: unset;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  font-size: 14px;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
