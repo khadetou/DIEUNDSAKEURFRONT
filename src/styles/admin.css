@@ -27268,7 +27268,7 @@ ul {
 }
 ul li {
   font-size: 14px;
-  display: inline-block;
+  display: inline-flex;
 }
 
 table tr td {
