@@ -3,6 +3,7 @@ import { Dispatch, FC } from "react";
 import Customizer from "components/customizer";
 import PageHeader from "../pageheader";
 import PageSidebar from "./page-sidebar";
+import Footer from "../footer";
 interface LayoutProp {
   children: React.ReactNode;
   open: boolean;
@@ -25,6 +26,7 @@ const Layout: FC<LayoutProp> = ({
           isTabletOrMobile={isTabletOrMobile}
         />
         <>{children}</>
+        <Footer />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { Dispatch, FC, useState, useEffect } from "react";
+import { Dispatch, FC, useState } from "react";
 import {
   Airplay,
   BarChart2,

@@ -1,3 +1,4 @@
+import BodyAddProperty from "components/dashboard/myproperties/addproperty";
 import Layout from "components/dashboard/pageBody/Layout";
 import { Dispatch, FC } from "react";
 
@@ -13,7 +14,7 @@ const AddpropertyBody: FC<AddpropertyBodyProps> = ({
 }) => {
   return (
     <Layout open={open} setOpen={setOpen} isTabletOrMobile={isTabletOrMobile}>
-      this is the body
+      <BodyAddProperty />
     </Layout>
   );
 };
