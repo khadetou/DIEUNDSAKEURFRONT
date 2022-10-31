@@ -36,24 +36,24 @@ const SoldOut = () => {
           </div>
           <div className="legend-exiring">
             <ul>
-              <li>
-                <div className="d-flex">
+              <li className="tw-inline">
+                <div className="d-flex ">
                   <span className="square-series bg-primary"></span>
-                  <h6>10</h6>
+                  <h6 className="!tw-mb-0">10</h6>
                 </div>
-                <span className="light-font"> 20 Days</span>
+                <span className="light-font"> {"> "}20 Days</span>
               </li>
-              <li>
-                <div className="d-flex">
+              <li className="tw-inline">
+                <div className="d-flex ">
                   <span className="square-series bg-success"></span>
-                  <h6>50</h6>
+                  <h6 className="!tw-mb-0">50</h6>
                 </div>
-                <span className="light-font">21 - 40 Days</span>
+                <span className="light-font"> 21 - 40 Days</span>
               </li>
-              <li>
-                <div className="d-flex">
+              <li className="tw-inline">
+                <div className="d-flex ">
                   <span className="square-series bg-warning"></span>
-                  <h6>75</h6>
+                  <h6 className="!tw-mb-0">75</h6>
                 </div>
                 <span className="light-font">41 - 80 Days</span>
               </li>
