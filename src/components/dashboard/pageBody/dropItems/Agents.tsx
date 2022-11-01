@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
-import { ChevronsRight, Link, UserPlus } from "react-feather";
+import { ChevronsRight, UserPlus } from "react-feather";
+import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa";
 import SlideDown from "react-slidedown";
 
