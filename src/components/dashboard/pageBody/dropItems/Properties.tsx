@@ -1,6 +1,6 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { ChevronsRight, Grid } from "react-feather";
-import { FaAngleRight } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import SlideDown from "react-slidedown";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -39,6 +39,14 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
   };
 
   const { pathname } = useRouter();
+  const links = ["add-property", "edit-property", "list", "favorites"];
+  useEffect(() => {
+    links.forEach((link) => {
+      if (pathname.includes(link)) {
+        setOpen(false);
+      }
+    });
+  }, [pathname]);
 
   return (
     <li
@@ -47,16 +55,16 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
     >
       <a
         className={`sidebar-link ${active.properties && "active"} ${
-          pathname.endsWith("add-property") ? "active" : ""
+          links.map((link) => pathname.endsWith(link)) ? "active" : ""
         }`}
         onClick={toggleSidebarItems}
       >
         <Grid />
         <span>My properties</span>
         <div className="according-menu">
-          <FaAngleRight
+          <FaAngleDown
             className={`tw-transition-all tw-duration-500 ${
-              open && "tw-rotate-90"
+              open && "-tw-rotate-90"
             }`}
           />
         </div>
@@ -91,10 +99,13 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
             </Link>
           </li>
           <li>
-            <a href="favourites.html">
+            <Link
+              href="/dashboard/favorites"
+              className={pathname.endsWith("favorites") ? "active" : ""}
+            >
               <ChevronsRight />
               Favourites
-            </a>
+            </Link>
           </li>
         </ul>
       </SlideDown>
