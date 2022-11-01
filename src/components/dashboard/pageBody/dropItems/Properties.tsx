@@ -55,7 +55,7 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
     >
       <a
         className={`sidebar-link ${active.properties && "active"} ${
-          links.map((link) => pathname.endsWith(link)) ? "active" : ""
+          links.find((link) => pathname.endsWith(link)) ? "active" : ""
         }`}
         onClick={toggleSidebarItems}
       >

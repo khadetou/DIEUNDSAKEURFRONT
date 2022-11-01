@@ -1,6 +1,6 @@
 import React from "react";
 import Card1 from "./card/card1";
-import Navigation from "./navigation";
+import Pagination from "./pagination";
 
 const Bottom = () => {
   return (
@@ -12,7 +12,7 @@ const Bottom = () => {
         <Card1 />
         <Card1 />
       </div>
-      <Navigation />
+      <Pagination />
     </div>
   );
 };

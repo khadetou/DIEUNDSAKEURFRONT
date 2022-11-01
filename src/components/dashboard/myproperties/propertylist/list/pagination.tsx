@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navigation = () => {
+const Pagination = () => {
   return (
     <nav className="theme-pagination">
       <ul className="pagination">
@@ -30,4 +30,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Pagination;
