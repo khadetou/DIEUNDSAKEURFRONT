@@ -1,16 +1,14 @@
 import Layout from "components/dashboard/Layout";
-
 import { useState } from "react";
-import AddUserScreen from "screens/manageusers/adduser-screen";
-
 import { useMediaQuery } from "react-responsive";
+import AddUserWizardScreen from "screens/manageusers/add-user-wizard-screen";
 
-const AddUser = () => {
+const AddUserWizard = () => {
   const [open, setOpen] = useState(false);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 991 });
   return (
     <Layout isTabletOrMobile={isTabletOrMobile} open={open} setOpen={setOpen}>
-      <AddUserScreen
+      <AddUserWizardScreen
         open={open}
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
@@ -19,4 +17,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddUserWizard;

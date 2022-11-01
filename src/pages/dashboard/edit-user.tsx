@@ -1,16 +1,16 @@
 import Layout from "components/dashboard/Layout";
 
 import { useState } from "react";
-import AddUserScreen from "screens/manageusers/adduser-screen";
+import EditUserScreen from "screens/manageusers/edit-user-screen";
 
 import { useMediaQuery } from "react-responsive";
 
-const AddUser = () => {
+const EditUser = () => {
   const [open, setOpen] = useState(false);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 991 });
   return (
     <Layout isTabletOrMobile={isTabletOrMobile} open={open} setOpen={setOpen}>
-      <AddUserScreen
+      <EditUserScreen
         open={open}
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
@@ -19,4 +19,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;

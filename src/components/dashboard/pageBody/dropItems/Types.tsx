@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { Layout, ChevronsRight, Link } from "react-feather";
-import { FaAngleDown, FaAngleRight } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 import SlideDown from "react-slidedown";
 
 type Active = {
@@ -53,8 +53,10 @@ const Types: FC<TypeProps> = ({ active, setActive }) => {
       className="sidebar-item"
       onClick={() => setActive({ ...tyactive, ["type"]: true })}
     >
-      <Link
-        className={`sidebar-link ${active.type && "active"}`}
+      <a
+        className={`sidebar-link ${active.type && "active"} ${
+          links.find((link) => pathname.endsWith(link)) ? "active" : ""
+        }`}
         onClick={toggleSidebarItems}
       >
         <Layout />
@@ -66,7 +68,7 @@ const Types: FC<TypeProps> = ({ active, setActive }) => {
             }`}
           />
         </div>
-      </Link>
+      </a>
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content">
           <li>
