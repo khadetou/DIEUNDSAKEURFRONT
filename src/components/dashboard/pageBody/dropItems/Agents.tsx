@@ -1,6 +1,7 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
-import { ChevronsRight, UserPlus } from "react-feather";
-import { FaAngleRight } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { ChevronsRight, Link, UserPlus } from "react-feather";
+import { FaAngleDown } from "react-icons/fa";
 import SlideDown from "react-slidedown";
 
 type Active = {
@@ -35,22 +36,42 @@ const Agents: FC<AgentsProps> = ({ active, setActive }) => {
   const toggleSidebarItems = () => {
     setOpen(!open);
   };
+
+  const links = [
+    "agent-profile",
+    "add-agent",
+    "add-agent-wizard",
+    "edit-agent",
+    "all-agents",
+    "agent-invoice",
+  ];
+  const { pathname } = useRouter();
+
+  useEffect(() => {
+    links.forEach((link) => {
+      if (pathname.includes(link)) {
+        setOpen(false);
+      }
+    });
+  }, [pathname]);
+
   return (
     <li
       className="sidebar-item"
       onClick={() => setActive({ ...agactive, ["agence"]: true })}
     >
       <a
-        href="#!"
-        className={`sidebar-link ${active.agence && "active"}`}
+        className={`sidebar-link ${active.agence && "active"} ${
+          links.find((link) => pathname.endsWith(link)) ? "active" : ""
+        }`}
         onClick={toggleSidebarItems}
       >
         <UserPlus />
         <span>Agents</span>
         <div className="according-menu">
-          <FaAngleRight
+          <FaAngleDown
             className={`tw-transition-all tw-duration-500 ${
-              open && "tw-rotate-90"
+              open && "-tw-rotate-90"
             }`}
           />
         </div>
@@ -58,41 +79,59 @@ const Agents: FC<AgentsProps> = ({ active, setActive }) => {
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content">
           <li>
-            <a href="agent-profile.html">
+            <Link
+              href="/dashboard/agent-profile"
+              className={pathname.endsWith("agent-profile") ? "active" : ""}
+            >
               <ChevronsRight />
               Profile
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="add-agent.html">
+            <Link
+              href="/dashboard/add-agent"
+              className={pathname.endsWith("add-agent") ? "active" : ""}
+            >
               <ChevronsRight />
               Add agent
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="add-agent-wizard.html">
+            <Link
+              href="/dashboard/add-agent-wizard"
+              className={pathname.endsWith("add-agent-wizard") ? "active" : ""}
+            >
               <ChevronsRight />
               Add agent wizard{" "}
               <span className="label label-shadow ms-1">new</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="edit-agent.html">
+            <Link
+              href="/dashboard/edit-agent"
+              className={pathname.endsWith("edit-agent") ? "active" : ""}
+            >
               <ChevronsRight />
               Edit agent
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="all-agents.html">
+            <Link
+              href="/dashboard/all-agents"
+              className={pathname.endsWith("all-agents") ? "active" : ""}
+            >
               <ChevronsRight />
               All agents
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="agent-invoice.html">
+            <Link
+              href="/dashboard/agent-invoice"
+              className={pathname.endsWith("agent-invoice") ? "active" : ""}
+            >
               <ChevronsRight />
               Invoice
-            </a>
+            </Link>
           </li>
         </ul>
       </SlideDown>

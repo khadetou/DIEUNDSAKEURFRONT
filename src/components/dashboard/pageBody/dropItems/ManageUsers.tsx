@@ -1,7 +1,9 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { Users, ChevronsRight } from "react-feather";
 import SlideDown from "react-slidedown";
-import { FaAngleRight } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 type Active = {
   properties: boolean;
@@ -35,6 +37,22 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
   const toggleSidebarItems = () => {
     setOpen(!open);
   };
+
+  const { pathname } = useRouter();
+  const links = [
+    "user-profile",
+    "add-user",
+    "add-user-wizard",
+    "edit-user",
+    "all-users",
+  ];
+  useEffect(() => {
+    links.forEach((link) => {
+      if (pathname.includes(link)) {
+        setOpen(false);
+      }
+    });
+  }, [pathname]);
   return (
     <li
       className="sidebar-item"
@@ -43,16 +61,17 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
       }}
     >
       <a
-        href="#!"
-        className={`sidebar-link ${active.manage && "active"}`}
+        className={`sidebar-link ${active.manage && "active"} ${
+          links.find((link) => pathname.endsWith(link)) ? "active" : ""
+        }`}
         onClick={toggleSidebarItems}
       >
         <Users />
         <span>Manage users</span>
         <div className="according-menu">
-          <FaAngleRight
+          <FaAngleDown
             className={`tw-transition-all tw-duration-500 ${
-              open && "tw-rotate-90"
+              open && "-tw-rotate-90"
             }`}
           />
         </div>
@@ -60,35 +79,50 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content">
           <li>
-            <a href="user-profile.html">
+            <Link
+              href="/dashboard/user-profile"
+              className={pathname.endsWith("user-profile") ? "active" : ""}
+            >
               <ChevronsRight />
               Profile
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="add-user.html">
+            <Link
+              href="/dashboard/add-user"
+              className={pathname.endsWith("add-user") ? "active" : ""}
+            >
               <ChevronsRight />
               Add user
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="add-user-wizard.html">
+            <Link
+              href="add-user-wizard"
+              className={pathname.endsWith("add-user-wizard") ? "active" : ""}
+            >
               <ChevronsRight />
               Add user wizard{" "}
               <span className="label label-shadow ms-1">new</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="edit-user.html">
+            <Link
+              href="edit-user"
+              className={pathname.endsWith("edit-user") ? "active" : ""}
+            >
               <ChevronsRight />
               Edit user
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="all-users.html">
+            <Link
+              href="all-users"
+              className={pathname.endsWith("all-users") ? "active" : ""}
+            >
               <ChevronsRight />
               All users
-            </a>
+            </Link>
           </li>
         </ul>
       </SlideDown>

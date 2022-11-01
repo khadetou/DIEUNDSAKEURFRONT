@@ -1,6 +1,7 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
-import { Layout, ChevronsRight } from "react-feather";
-import { FaAngleRight } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { Layout, ChevronsRight, Link } from "react-feather";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa";
 import SlideDown from "react-slidedown";
 
 type Active = {
@@ -35,51 +36,74 @@ const Types: FC<TypeProps> = ({ active, setActive }) => {
   const toggleSidebarItems = () => {
     setOpen(!open);
   };
+
+  const { pathname } = useRouter();
+
+  const links = ["family-house", "cottage", "apartment", "condominium"];
+
+  useEffect(() => {
+    links.forEach((link) => {
+      if (pathname.includes(link)) {
+        setOpen(false);
+      }
+    });
+  }, [pathname]);
   return (
     <li
       className="sidebar-item"
       onClick={() => setActive({ ...tyactive, ["type"]: true })}
     >
-      <a
-        href="#!"
+      <Link
         className={`sidebar-link ${active.type && "active"}`}
         onClick={toggleSidebarItems}
       >
         <Layout />
         <span>Types</span>
         <div className="according-menu">
-          <FaAngleRight
+          <FaAngleDown
             className={`tw-transition-all tw-duration-500 ${
-              open && "tw-rotate-90"
+              open && "-tw-rotate-90"
             }`}
           />
         </div>
-      </a>
+      </Link>
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content">
           <li>
-            <a href="family-house.html">
+            <Link
+              href="/dashboard/family-house"
+              className={pathname.endsWith("family-house") ? "active" : ""}
+            >
               <ChevronsRight />
               Family House
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="cottage.html">
+            <Link
+              href="/dashboard/cottage"
+              className={pathname.endsWith("cottage") ? "active" : ""}
+            >
               <ChevronsRight />
               Cottage
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="apartment.html">
+            <Link
+              href="/dashboard/apartment"
+              className={pathname.endsWith("apartment") ? "active" : ""}
+            >
               <ChevronsRight />
               Apartment
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="condominium.html">
+            <Link
+              href="/dashboard/condominium"
+              className={pathname.endsWith("condominium") ? "active" : ""}
+            >
               <ChevronsRight />
               Condominium
-            </a>
+            </Link>
           </li>
         </ul>
       </SlideDown>
