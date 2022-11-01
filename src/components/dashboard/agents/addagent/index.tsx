@@ -1,7 +1,7 @@
 import React from "react";
 import TopBody from "./top-body";
 
-const BodyAddAgent = () => {
+const BodyAddUser = () => {
   return (
     <div className="page-body">
       <TopBody />
@@ -167,4 +167,4 @@ const BodyAddAgent = () => {
   );
 };
 
-export default BodyAddAgent;
+export default BodyAddUser;

@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
-import { Layout, ChevronsRight, Link } from "react-feather";
+import { Layout, ChevronsRight } from "react-feather";
 import { FaAngleDown } from "react-icons/fa";
 import SlideDown from "react-slidedown";
+import Link from "next/link";
 
 type Active = {
   properties: boolean;
