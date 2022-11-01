@@ -10,6 +10,9 @@ a.admin {
   transition: 0.5s;
   font-size: 14px;
 }
+.slick-dots li button:before {
+  opacity: 1 !important;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

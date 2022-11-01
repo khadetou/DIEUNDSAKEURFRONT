@@ -82,10 +82,13 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
             </Link>
           </li>
           <li>
-            <a href="listing.html">
+            <Link
+              href="/dashboard/list"
+              className={pathname.endsWith("list") ? "active" : ""}
+            >
               <ChevronsRight />
               property list
-            </a>
+            </Link>
           </li>
           <li>
             <a href="favourites.html">

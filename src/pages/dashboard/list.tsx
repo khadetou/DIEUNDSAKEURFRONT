@@ -3,14 +3,14 @@ import Layout from "components/dashboard/Layout";
 import { useState } from "react";
 
 import { useMediaQuery } from "react-responsive";
-import EditPropertyScreen from "screens/Myproperties/editproperty";
+import PropertyListScreen from "screens/Myproperties/propertyList";
 
-const EditProperty = () => {
+const List = () => {
   const [open, setOpen] = useState(false);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 991 });
   return (
     <Layout isTabletOrMobile={isTabletOrMobile} open={open} setOpen={setOpen}>
-      <EditPropertyScreen
+      <PropertyListScreen
         open={open}
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
@@ -19,4 +19,4 @@ const EditProperty = () => {
   );
 };
 
-export default EditProperty;
+export default List;

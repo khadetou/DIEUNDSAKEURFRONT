@@ -1,5 +1,7 @@
 import "styles/globals.css";
 import "react-slidedown/lib/slidedown.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
