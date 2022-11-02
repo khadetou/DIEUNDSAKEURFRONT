@@ -1,7 +1,10 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { User, Lock } from "react-feather";
 import { FaEyeSlash } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "hooks/index";
+import { register, reset } from "redux/auth/authSlice";
+import { useRouter } from "next/router";
 
 const LoginWrap = () => {
   return (

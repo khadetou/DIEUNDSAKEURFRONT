@@ -1,28 +1,19 @@
-import { configureStore, createSlice, ThunkAction } from "@reduxjs/toolkit";
-import { HYDRATE, createWrapper } from "next-redux-wrapper";
+import { configureStore, ThunkAction } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 import AuthReducer from "./auth/authSlice";
 
-const reducer = (state: any, action: any) => {
-  const { type, payload } = action;
-  if (type === HYDRATE) {
-    const nextState = {
-      ...state,
-      ...payload,
-    };
-    return nextState;
-  } else {
-    return {
-      auth: AuthReducer,
-    };
-  }
-};
-
-export const initStore: any = () =>
+export const makeStore: any = () =>
   configureStore({
-    reducer: reducer,
-    devTools: process.env.NODE_ENV !== "production",
+    reducer: {
+      auth: AuthReducer,
+      devTools: process.env.NODE_ENV !== "production",
+    },
   });
 
-export type AppDispatch = typeof initStore.dispatch;
-export type RootState = ReturnType<typeof initStore.getState>;
-export const wrapper = createWrapper(initStore, { debug: true });
+//   export type AppStore = ReturnType<typeof makeStore>;
+// export type AppState = ReturnType<AppStore['getState']>;
+// export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
+
+export type AppDispatch = typeof makeStore.dispatch;
+export type RootState = ReturnType<typeof makeStore.getState>;
+export const wrapper = createWrapper(makeStore, { debug: true });

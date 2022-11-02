@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 import authService from "./authService";
 
 const localToken =
@@ -178,8 +179,13 @@ export const authSlice = createSlice({
         (state.message = "");
     },
   },
-  extraReducers: (builder: any) => {
+  extraReducers: (builder) => {
     builder
+      .addCase(HYDRATE, (state, action) => {
+        // console.log("Hydrate", state, action.payload);
+        state = state;
+        action = action.payload;
+      })
       .addCase(register.pending, (state: UserState) => {
         state.isLoading = true;
       })

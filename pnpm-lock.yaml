@@ -32,6 +32,8 @@ specifiers:
   react-responsive: ^9.0.0
   react-slick: ^0.29.0
   react-slidedown: ^2.4.7
+  react-toastify: ^9.1.0
+  redux: ^4.2.0
   slick-carousel: ^1.8.1
   tailwindcss: ^3.2.1
   typescript: 4.8.4
@@ -53,10 +55,12 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-feather: 2.0.10_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
-  react-redux: 8.0.4_nsgh7lqw2e2kb5wanadocemtdi
+  react-redux: 8.0.4_h6epe7l2gr2z2rhkgdu6cxyvqq
   react-responsive: 9.0.0_react@18.2.0
   react-slick: 0.29.0_biqbaboplfbrettd7655fr4n2y
   react-slidedown: 2.4.7_biqbaboplfbrettd7655fr4n2y
+  react-toastify: 9.1.0_biqbaboplfbrettd7655fr4n2y
+  redux: 4.2.0
   slick-carousel: 1.8.1
 
 devDependencies:
@@ -300,7 +304,7 @@ packages:
     dependencies:
       immer: 9.0.16
       react: 18.2.0
-      react-redux: 8.0.4_nsgh7lqw2e2kb5wanadocemtdi
+      react-redux: 8.0.4_h6epe7l2gr2z2rhkgdu6cxyvqq
       redux: 4.2.0
       redux-thunk: 2.4.1_redux@4.2.0
       reselect: 4.1.6
@@ -711,6 +715,11 @@ packages:
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: false
 
   /color-convert/2.0.1:
@@ -1776,7 +1785,7 @@ packages:
     dependencies:
       next: 13.0.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
-      react-redux: 8.0.4_nsgh7lqw2e2kb5wanadocemtdi
+      react-redux: 8.0.4_h6epe7l2gr2z2rhkgdu6cxyvqq
     dev: false
 
   /next/13.0.0_biqbaboplfbrettd7655fr4n2y:
@@ -2145,7 +2154,7 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-redux/8.0.4_nsgh7lqw2e2kb5wanadocemtdi:
+  /react-redux/8.0.4_h6epe7l2gr2z2rhkgdu6cxyvqq:
     resolution: {integrity: sha512-yMfQ7mX6bWuicz2fids6cR1YT59VTuT8MKyyE310wJQlINKENCeT1UcPdEiX6znI5tF8zXyJ/VYvDgeGuaaNwQ==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -2175,6 +2184,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
+      redux: 4.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
@@ -2215,6 +2225,17 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.4.0
+    dev: false
+
+  /react-toastify/9.1.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-63i/5SROvfYz9yzdkmxIrpndtggTdif/5ZpswY3VH+s2/S1Hxo/hiv+oGXnPH6UO2pJBOgfcLNeyVh7okRmnhg==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react/18.2.0:
