@@ -2,6 +2,7 @@
 @import "./admin.css";
 @import "./animate.css";
 @import "./all.min.css";
+@import "./colors.css";
 
 a.admin {
   color: var(--theme-default7);

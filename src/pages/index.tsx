@@ -1,7 +1,11 @@
+import HomeSection from "components/Home/Homesection";
+import Layout from "components/Layout";
+
 export default function Home() {
   return (
-    <div className="page-wrapper">
+    <Layout>
+      <HomeSection />
       <h1>Hello world!</h1>
-    </div>
+    </Layout>
   );
 }
