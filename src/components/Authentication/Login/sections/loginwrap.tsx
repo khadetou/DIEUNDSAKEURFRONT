@@ -3,10 +3,50 @@ import React, { useEffect, useState } from "react";
 import { User, Lock } from "react-feather";
 import { FaEyeSlash } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "hooks/index";
-import { register, reset } from "redux/auth/authSlice";
+import { login, register, reset } from "redux/auth/authSlice";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const LoginWrap = () => {
+  const [show, setShow] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const onChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const dispatch = useAppDispatch();
+  const { isError, message, isSuccess } = useAppSelector((state) => state.auth);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message.message);
+    }
+    if (isSuccess) {
+      if (router.query && router.query.from) {
+        router.push(router.query.from as string);
+      } else {
+        router.push("/");
+      }
+    }
+    dispatch(reset());
+  }, [isError, message, isSuccess, router, dispatch]);
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+    dispatch(login(userData));
+  };
+
   return (
     <section className="login-wrap">
       <div className="container">
@@ -16,7 +56,7 @@ const LoginWrap = () => {
               <div className="title-3 text-start">
                 <h2>Log in</h2>
               </div>
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="form-group">
                   <div className="input-group">
                     <div className="input-group-prepend">
@@ -26,6 +66,8 @@ const LoginWrap = () => {
                     </div>
                     <input
                       type="text"
+                      name="email"
+                      onChange={(e) => onChange(e)}
                       className="form-control"
                       placeholder="Enter Email"
                       required
@@ -42,6 +84,8 @@ const LoginWrap = () => {
                     <input
                       type="password"
                       id="pwd-input"
+                      name="password"
+                      onChange={(e) => onChange(e)}
                       className="form-control"
                       placeholder="Password"
                       maxLength={8}

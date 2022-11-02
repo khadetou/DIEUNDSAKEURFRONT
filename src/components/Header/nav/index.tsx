@@ -48,7 +48,7 @@ const NavBar = () => {
             </li>
             <li className="dropdown">
               <a className="nav-link menu-title">Investir</a>
-              <InvestirdropDown />
+              {/* <InvestirdropDown /> */}
             </li>
           </ul>
         </div>
