@@ -9,7 +9,7 @@ const TopBody = () => {
             <div className="page-header-left">
               <h3>
                 Dashboard
-                <small>Welcome to admin panel</small>
+                <small>Bienvenue au Tableau de Bord</small>
               </h3>
             </div>
           </div>

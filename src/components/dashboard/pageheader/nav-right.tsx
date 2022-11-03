@@ -21,10 +21,7 @@ const NavRight = () => {
           </div>
         </li>
         <li>
-          <a
-            href="#!"
-            onClick={() => console.log("javascript:toggleFullScreen()")}
-          >
+          <a onClick={() => console.log("javascript:toggleFullScreen()")}>
             <Maximize />
           </a>
         </li>
@@ -49,12 +46,7 @@ const NavRight = () => {
           </a>
           <MessageChat />
         </li>
-        <li className="profile-avatar onhover-dropdown">
-          <div>
-            <img src="/images/avatar/3.jpg" className="img-fluid" alt="" />
-          </div>
-          <Profile />
-        </li>
+        <Profile />
       </ul>
     </div>
   );

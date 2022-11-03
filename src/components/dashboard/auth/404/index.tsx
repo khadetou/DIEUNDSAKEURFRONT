@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const NotfoundBody = () => {
   return (
@@ -30,18 +31,15 @@ const NotfoundBody = () => {
                   has been removed. please check or search again.
                 </p>
                 <div className="btns">
-                  <a
-                    href="index.html"
-                    className="btn btn-pill btn-gradient color-4"
-                  >
+                  <Link href="/" className="btn btn-pill btn-gradient color-4">
                     go to home page
-                  </a>
-                  <a
-                    href="index.html"
+                  </Link>
+                  <Link
+                    href="/"
                     className="btn btn-pill btn-dashed color-4 ms-2"
                   >
                     Report problem
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
