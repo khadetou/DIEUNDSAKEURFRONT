@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 const TopBody = () => {
   return (
     <div className="container-fluid">
@@ -16,9 +16,9 @@ const TopBody = () => {
           <div className="col-sm-6">
             <ol className="breadcrumb pull-right">
               <li className="breadcrumb-item">
-                <a href="index.html">
+                <Link href="/">
                   <i className="fa fa-home"></i>
-                </a>
+                </Link>
               </li>
               <li className="breadcrumb-item active">Dashboard</li>
             </ol>

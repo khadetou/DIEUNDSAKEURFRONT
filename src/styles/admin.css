@@ -5236,13 +5236,13 @@ fieldset:disabled .btn {
 .breadcrumb-item + .breadcrumb-item {
   padding-left: 0.5rem;
 }
-.breadcrumb-item + .breadcrumb-item::before {
+/* .breadcrumb-item + .breadcrumb-item::before {
   float: left;
   padding-right: 0.5rem;
   color: #6c757d;
   content: var(--bs-breadcrumb-divider, "https://themes.pixelstrap.com/")
-    /* rtl: var(--bs-breadcrumb-divider, "/") */;
-}
+    /* rtl: var(--bs-breadcrumb-divider, "/") */
+/* } */
 
 .breadcrumb-item.active {
   color: #6c757d;
@@ -27236,9 +27236,9 @@ body {
 
 a {
   color: var(--theme-default7);
-  text-decoration: unset ;
-  -webkit-transition: 0.5s ;
-  transition: 0.5s ;
+  text-decoration: unset;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 a:hover {
   color: var(--theme-default7);

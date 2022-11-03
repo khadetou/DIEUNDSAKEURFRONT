@@ -4,6 +4,7 @@ import { FaAngleDown } from "react-icons/fa";
 import SlideDown from "react-slidedown";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "hooks/index";
 
 type Active = {
   properties: boolean;
@@ -48,6 +49,10 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
     });
   }, [pathname]);
 
+  const dispatch = useAppDispatch();
+  const { user, isError, isAuthenticated, isSuccess, isLoading, message } =
+    useAppSelector((store) => store.auth);
+
   return (
     <li
       className="sidebar-item"
@@ -60,7 +65,9 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
         onClick={toggleSidebarItems}
       >
         <Grid />
-        <span>My properties</span>
+        <span>
+          {user && user.roles === "admin" ? "My properties" : "Mes Propriètés"}
+        </span>
         <div className="according-menu">
           <FaAngleDown
             className={`tw-transition-all tw-duration-500 ${
@@ -71,31 +78,35 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
       </a>
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content pure-menu-list dropdown-list ">
-          <li>
-            <Link
-              href="/dashboard/add-property"
-              className={pathname.endsWith("add-property") ? "active" : ""}
-            >
-              <ChevronsRight />
-              add property
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/dashboard/edit-property"
-              className={pathname.endsWith("edit-property") ? "active" : ""}
-            >
-              <ChevronsRight />
-              edit property
-            </Link>
-          </li>
+          {user && user.roles === "admin" && (
+            <>
+              <li>
+                <Link
+                  href="/dashboard/add-property"
+                  className={pathname.endsWith("add-property") ? "active" : ""}
+                >
+                  <ChevronsRight />
+                  add property
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/edit-property"
+                  className={pathname.endsWith("edit-property") ? "active" : ""}
+                >
+                  <ChevronsRight />
+                  edit property
+                </Link>
+              </li>
+            </>
+          )}
           <li>
             <Link
               href="/dashboard/list"
               className={pathname.endsWith("list") ? "active" : ""}
             >
               <ChevronsRight />
-              property list
+              Liste de proprièté
             </Link>
           </li>
           <li>
@@ -104,7 +115,7 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
               className={pathname.endsWith("favorites") ? "active" : ""}
             >
               <ChevronsRight />
-              Favourites
+              Mes Favories
             </Link>
           </li>
         </ul>

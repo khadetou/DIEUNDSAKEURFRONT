@@ -4,6 +4,7 @@ import SlideDown from "react-slidedown";
 import { FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "hooks/index";
 
 type Active = {
   properties: boolean;
@@ -53,6 +54,10 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
       }
     });
   }, [pathname]);
+
+  const dispatch = useAppDispatch();
+  const { user, isError, isAuthenticated, isSuccess, isLoading, message } =
+    useAppSelector((store) => store.auth);
   return (
     <li
       className="sidebar-item"
@@ -67,7 +72,9 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
         onClick={toggleSidebarItems}
       >
         <Users />
-        <span>Manage users</span>
+        <span>
+          {user && user.roles === "admin" ? "Manage users" : "Mon Profile"}
+        </span>
         <div className="according-menu">
           <FaAngleDown
             className={`tw-transition-all tw-duration-500 ${
@@ -87,43 +94,51 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
               Profile
             </Link>
           </li>
-          <li>
-            <Link
-              href="/dashboard/add-user"
-              className={pathname.endsWith("add-user") ? "active" : ""}
-            >
-              <ChevronsRight />
-              Add user
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="add-user-wizard"
-              className={pathname.endsWith("add-user-wizard") ? "active" : ""}
-            >
-              <ChevronsRight />
-              Add user wizard{" "}
-              <span className="label label-shadow ms-1">new</span>
-            </Link>
-          </li>
+          {user && user.roles === "admin" && (
+            <>
+              <li>
+                <Link
+                  href="/dashboard/add-user"
+                  className={pathname.endsWith("add-user") ? "active" : ""}
+                >
+                  <ChevronsRight />
+                  Add user
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="add-user-wizard"
+                  className={
+                    pathname.endsWith("add-user-wizard") ? "active" : ""
+                  }
+                >
+                  <ChevronsRight />
+                  Add user wizard{" "}
+                  <span className="label label-shadow ms-1">new</span>
+                </Link>
+              </li>
+            </>
+          )}
           <li>
             <Link
               href="edit-user"
               className={pathname.endsWith("edit-user") ? "active" : ""}
             >
               <ChevronsRight />
-              Edit user
+              Modifier mon profile
             </Link>
           </li>
-          <li>
-            <Link
-              href="all-users"
-              className={pathname.endsWith("all-users") ? "active" : ""}
-            >
-              <ChevronsRight />
-              All users
-            </Link>
-          </li>
+          {user && user.roles === "admin" && (
+            <li>
+              <Link
+                href="all-users"
+                className={pathname.endsWith("all-users") ? "active" : ""}
+              >
+                <ChevronsRight />
+                All users
+              </Link>
+            </li>
+          )}
         </ul>
       </SlideDown>
     </li>

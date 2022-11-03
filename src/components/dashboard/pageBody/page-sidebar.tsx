@@ -5,6 +5,7 @@ import {
   ChevronsLeft,
   MapPin,
   CreditCard,
+  Divide,
 } from "react-feather";
 import { FaAngleRight } from "react-icons/fa";
 import { useRouter } from "next/router";
@@ -14,7 +15,9 @@ import ManageUsers from "./dropItems/ManageUsers";
 import Properties from "./dropItems/Properties";
 import Types from "./dropItems/Types";
 import Link from "next/link";
-
+import { useAppDispatch, useAppSelector } from "hooks/index";
+import Image from "next/image";
+import { initials } from "utils/index";
 interface PageSidebarProps {
   open: boolean;
   setOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -36,6 +39,9 @@ const PageSidebar: FC<PageSidebarProps> = ({
   });
 
   const { pathname } = useRouter();
+  const dispatch = useAppDispatch();
+  const { user, isError, isAuthenticated, isSuccess, isLoading, message } =
+    useAppSelector((store) => store.auth);
 
   return (
     <div
@@ -59,14 +65,24 @@ const PageSidebar: FC<PageSidebarProps> = ({
       <div className="main-sidebar">
         <div className="user-profile">
           <div className="media">
-            <div className="change-pic">
-              <img src="/images/avatar/3.jpg" className="img-fluid" alt="" />
-            </div>
+            {user && user.image.public_url ? (
+              <div className="change-pic">
+                <Image
+                  src={user.image.public_url}
+                  className="img-fluid"
+                  alt=""
+                />
+              </div>
+            ) : (
+              <div className="tw-rounded-full tw-p-3 tw-mr-2 tw-font-bold tw-text-xs tw-bg-red-600 tw-text-white tw-cursor-pointer">
+                {user && initials(user!.firstname, user!.lastname)}
+              </div>
+            )}
             <div className="media-body">
               <Link href="/dashboard/user-profile">
-                <h6>Zack Lee</h6>
+                <h6>{user && `${user.firstname} ${user.lastname}`}</h6>
               </Link>
-              <span className="font-roboto">zackle@gmail.com</span>
+              <span className="font-roboto">{user && `${user.email}`}</span>
             </div>
           </div>
         </div>
@@ -91,7 +107,10 @@ const PageSidebar: FC<PageSidebarProps> = ({
 
             <ManageUsers active={active} setActive={setActive} />
 
-            <Agents active={active} setActive={setActive} />
+            {(user && user.role === "admin") ||
+              (user && user.role === "agence" && (
+                <Agents active={active} setActive={setActive} />
+              ))}
 
             <li className="sidebar-item">
               <Link
@@ -125,10 +144,10 @@ const PageSidebar: FC<PageSidebarProps> = ({
                 }`}
               >
                 <CreditCard />
-                <span>Payments</span>
+                <span>Paiement</span>
               </Link>
             </li>
-            <Authentication active={active} setActive={setActive} />
+            {/* <Authentication active={active} setActive={setActive} /> */}
             <li>
               <div className="upgrade-box">
                 <img
@@ -143,7 +162,7 @@ const PageSidebar: FC<PageSidebarProps> = ({
                   className="p-0 m-0"
                 >
                   <span className="d-block">
-                    Raise ticket at "support@pixelstrap.com"
+                    Raise ticket à "support@dieundsakeur.com"
                   </span>
                 </a>
                 <button
@@ -155,7 +174,7 @@ const PageSidebar: FC<PageSidebarProps> = ({
                   }
                   className="btn btn-pill btn-gradient color-4 btn-sm mt-2 fw-bold"
                 >
-                  Buy Now
+                  Acheter Maintenant
                 </button>
               </div>
             </li>
