@@ -10,7 +10,7 @@ export const makeStore: any = () =>
     },
   });
 
-//   export type AppStore = ReturnType<typeof makeStore>;
+export type AppStore = ReturnType<typeof makeStore>;
 // export type AppState = ReturnType<AppStore['getState']>;
 // export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
 

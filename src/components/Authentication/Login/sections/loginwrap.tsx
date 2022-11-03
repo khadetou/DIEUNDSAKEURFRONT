@@ -32,7 +32,7 @@ const LoginWrap = () => {
       if (router.query && router.query.from) {
         router.push(router.query.from as string);
       } else {
-        router.push("/");
+        router.push("/dashboard");
       }
     }
     dispatch(reset());

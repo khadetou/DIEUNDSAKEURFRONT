@@ -183,8 +183,13 @@ export const authSlice = createSlice({
     builder
       .addCase(HYDRATE, (state, action) => {
         // console.log("Hydrate", state, action.payload);
-        state = state;
-        action = action.payload;
+        state.isAuthenticated = action.payload.auth.isAuthenticated;
+        state.user = action.payload.auth.user;
+        state.isError = action.payload.auth.isError;
+        state.isLoading = action.payload.auth.isLoading;
+        state.isSuccess = action.payload.auth.isSuccess;
+        state.token = action.payload.auth.token;
+        state.message = action.payload.auth.message;
       })
       .addCase(register.pending, (state: UserState) => {
         state.isLoading = true;
