@@ -11,6 +11,7 @@ import { logout, getUser } from "redux/auth/authSlice";
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 991 });
+
   return (
     <Layout isTabletOrMobile={isTabletOrMobile} open={open} setOpen={setOpen}>
       <PageBody

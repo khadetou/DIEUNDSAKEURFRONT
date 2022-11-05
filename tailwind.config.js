@@ -6,7 +6,15 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        darkgray: "#6C757D",
+        lightgray: "#f0f0f0",
+        lightred: "#FEEDEE",
+        lightgreen: "rgba(137, 200, 38, 0.1)",
+        lightblue: "rgba(2, 94, 222, 0.1)",
+      },
+    },
   },
   plugins: [],
 };
