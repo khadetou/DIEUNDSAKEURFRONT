@@ -39,7 +39,8 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
     setOpen(!open);
   };
 
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
+
   const links = [
     "user-profile",
     "add-user",
@@ -58,6 +59,7 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
   const dispatch = useAppDispatch();
   const { user, isError, isAuthenticated, isSuccess, isLoading, message } =
     useAppSelector((store) => store.auth);
+
   return (
     <li
       className="sidebar-item"
@@ -105,20 +107,18 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
                   Add user
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="add-user-wizard"
-                  className={
-                    pathname.endsWith("add-user-wizard") ? "active" : ""
-                  }
-                >
-                  <ChevronsRight />
-                  Add user wizard{" "}
-                  <span className="label label-shadow ms-1">new</span>
-                </Link>
-              </li>
             </>
           )}
+          <li>
+            <Link
+              href="/dashboard/add-user-wizard"
+              className={pathname.endsWith("add-user-wizard") ? "active" : ""}
+            >
+              <ChevronsRight />
+              Devenez un Hote
+            </Link>
+          </li>
+
           <li>
             <Link
               href="edit-user"

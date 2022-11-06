@@ -15,7 +15,7 @@ const Customizer = () => {
           <X />
         </div>
         <LayoutSetting />
-        {/* <div className="layouts-settings">
+        <div className="layouts-settings">
           <div className="customizer-title">
             <h6 className="color-4">Layout Direction</h6>
           </div>
@@ -33,7 +33,7 @@ const Customizer = () => {
             </label>
             <span>RTL</span>
           </div>
-        </div> */}
+        </div>
         <ColorPicker />
       </div>
     </div>
