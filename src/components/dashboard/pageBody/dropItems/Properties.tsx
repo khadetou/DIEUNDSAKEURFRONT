@@ -53,6 +53,8 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
   const { user, isError, isAuthenticated, isSuccess, isLoading, message } =
     useAppSelector((store) => store.auth);
 
+  console.log(user.roles);
+
   return (
     <li
       className="sidebar-item"
@@ -78,7 +80,7 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
       </a>
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content pure-menu-list dropdown-list ">
-          {user && user.roles === "admin" && (
+          {user && ["admin", "owner", "agence"].includes(user.roles) && (
             <>
               <li>
                 <Link
@@ -86,7 +88,7 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
                   className={pathname.endsWith("add-property") ? "active" : ""}
                 >
                   <ChevronsRight />
-                  add property
+                  Ajouter une proprièté
                 </Link>
               </li>
               <li>
@@ -95,7 +97,7 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
                   className={pathname.endsWith("edit-property") ? "active" : ""}
                 >
                   <ChevronsRight />
-                  edit property
+                  Modifier vos proprièté
                 </Link>
               </li>
             </>

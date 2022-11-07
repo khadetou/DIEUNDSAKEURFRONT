@@ -5,12 +5,10 @@ import {
   ChevronsLeft,
   MapPin,
   CreditCard,
-  Divide,
 } from "react-feather";
 import { FaAngleRight } from "react-icons/fa";
 import { useRouter } from "next/router";
 import Agents from "./dropItems/Agents";
-import Authentication from "./dropItems/Authentication";
 import ManageUsers from "./dropItems/ManageUsers";
 import Properties from "./dropItems/Properties";
 import Types from "./dropItems/Types";
@@ -65,17 +63,19 @@ const PageSidebar: FC<PageSidebarProps> = ({
       <div className="main-sidebar">
         <div className="user-profile">
           <div className="media">
-            {user && user.image.public_url ? (
+            {user && user.image.url ? (
               <div className="change-pic">
                 <Image
-                  src={user.image.public_url}
+                  src={user.image.url}
+                  width={user.image.width}
+                  height={user.image.height}
                   className="img-fluid"
                   alt=""
                 />
               </div>
             ) : (
               <div className="tw-rounded-full tw-p-3 tw-mr-2 tw-font-bold tw-text-xs tw-bg-red-600 tw-text-white tw-cursor-pointer">
-                {user && initials(user!.firstname, user!.lastname)}
+                {user && initials(user.firstname, user.lastname)}
               </div>
             )}
             <div className="media-body">

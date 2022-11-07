@@ -18,19 +18,19 @@ const Profile = () => {
   }, [isAuthenticated]);
   return (
     <li className="profile-avatar onhover-dropdown ">
-      {user && user.image.public_url ? (
+      {user && user.image.url ? (
         <div>
           <Image
-            src={user!.image.public_url}
-            width={user!.image.width}
-            height={user!.image.height}
+            src={user.image.url}
+            width={user.image.width}
+            height={user.image.height}
             className="img-fluid"
             alt=""
           />
         </div>
       ) : (
         <div className="tw-font-semibold tw-rounded-full tw-p-2 tw-text-xs tw-bg-red-600 tw-text-white tw-cursor-pointer">
-          {user && initials(user!.firstname, user!.lastname)}
+          {user && initials(user.firstname, user.lastname)}
         </div>
       )}
       <ul className="profile-dropdown onhover-show-div !tw-w-[194px]">
