@@ -182,7 +182,6 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(HYDRATE, (state, action) => {
-        // console.log("Hydrate", state, action.payload);
         state.isAuthenticated = action.payload.auth.isAuthenticated;
         state.user = action.payload.auth.user;
         state.isError = action.payload.auth.isError;
@@ -286,7 +285,7 @@ export const authSlice = createSlice({
       .addCase(UpdateUser.pending, (state: any) => {
         state.isLoading = true;
       })
-      .addCase(UpdateUser.fulfilled, (state: any, action: any) => {
+      .addCase(UpdateUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;

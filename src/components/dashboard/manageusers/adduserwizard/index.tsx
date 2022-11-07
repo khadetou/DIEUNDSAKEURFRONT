@@ -5,10 +5,13 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { UpdateUser } from "redux/auth/authSlice";
 import { Check } from "react-feather";
+import Image from "next/image";
 
 const BodyAddUserWizard = () => {
   const dispatch = useAppDispatch();
-  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  const { isAuthenticated, user, isError, isSuccess, message } = useAppSelector(
+    (state) => state.auth
+  );
   const [formeData, setFormData] = useState({
     firstname: (user && user.firstname) || "",
     lastname: (user && user.lastname) || "",
@@ -41,12 +44,23 @@ const BodyAddUserWizard = () => {
   const [step3, setStep3] = useState(false);
   const [validate, setValidate] = useState(false);
   const [validate2, setValidate2] = useState(false);
+  const [image, setImage] = useState<string | ArrayBuffer | null>("");
+  const [imagePrev, setImagePrev] = useState<string | ArrayBuffer | null>("");
 
   useEffect(() => {
     if (!isAuthenticated) {
       push("/login");
     }
-  }, [isAuthenticated]);
+    if (isSuccess) {
+      toast.success("Votre Profile a été modifié avec succès");
+      setTimeout(() => {
+        push("/dashboard/add-property");
+      }, 5000);
+    }
+    if (isError) {
+      toast.error(message.message);
+    }
+  }, [isAuthenticated, isSuccess, isError]);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
@@ -62,6 +76,7 @@ const BodyAddUserWizard = () => {
         role: type,
         agencename,
         description,
+        image,
         password,
         password2,
       };
@@ -99,6 +114,18 @@ const BodyAddUserWizard = () => {
 
   const prevStep2 = () => {
     setStep2(false);
+  };
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+    console.log(e.target.files![0].size);
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImage(reader.result);
+        setImagePrev(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files![0]);
   };
 
   return (
@@ -426,26 +453,50 @@ const BodyAddUserWizard = () => {
                         <label>Media</label>
                         <form className="dropzone" id="multiFileUpload">
                           <div className="dz-message needsclick">
-                            <i className="fas fa-cloud-upload-alt"></i>
-                            <h6>Drop files here or click to upload.</h6>
+                            <label htmlFor="file">
+                              <input
+                                type="file"
+                                id="file"
+                                name="image"
+                                className="!tw-hidden"
+                                accept="images/*"
+                                onChange={onFileChange}
+                              />
+                              {imagePrev ? (
+                                <Image
+                                  src={imagePrev as string}
+                                  alt=""
+                                  className="tw-rounded-md"
+                                  width={200}
+                                  height={200}
+                                />
+                              ) : (
+                                <>
+                                  <i className="fas fa-cloud-upload-alt"></i>
+                                  <h6>Drop files here or click to upload.</h6>
+                                </>
+                              )}
+                            </label>
                           </div>
                         </form>
                       </div>
-                      <div className="next-btn d-flex">
-                        <button
-                          type="button"
-                          className="btn btn-dashed color-4 prev2 btn-pill"
-                          onClick={prevStep2}
-                        >
-                          <i className="fas fa-arrow-left me-2"></i> Previous
-                        </button>
-                        <button
-                          type="submit"
-                          className="btn btn-gradient color-4 next3 btn-pill"
-                        >
-                          submit
-                        </button>
-                      </div>
+                      <form onSubmit={onSubmit}>
+                        <div className="next-btn d-flex">
+                          <button
+                            type="button"
+                            className="btn btn-dashed color-4 prev2 btn-pill"
+                            onClick={prevStep2}
+                          >
+                            <i className="fas fa-arrow-left me-2"></i> Previous
+                          </button>
+                          <button
+                            type="submit"
+                            className="btn btn-gradient color-4 next3 btn-pill"
+                          >
+                            submit
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

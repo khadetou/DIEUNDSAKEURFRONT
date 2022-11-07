@@ -15,7 +15,7 @@ const PageBody: FC<PageBodyProps> = ({ open, setOpen, isTabletOrMobile }) => {
 
   return (
     <Layout open={open} setOpen={setOpen} isTabletOrMobile={isTabletOrMobile}>
-      {user.roles === "user" ? <UserCard /> : <Body />}
+      {user && user.roles === "user" ? <UserCard /> : <Body />}
     </Layout>
   );
 };

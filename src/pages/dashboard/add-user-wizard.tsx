@@ -7,6 +7,7 @@ import { getCookie } from "redux/auth/authService";
 import { logout, getUser } from "redux/auth/authSlice";
 import { wrapper } from "redux/store";
 import AddUserWizardScreen from "screens/manageusers/add-user-wizard-screen";
+import { ToastContainer } from "react-toastify";
 
 const AddUserWizard = () => {
   const [open, setOpen] = useState(false);
@@ -18,6 +19,7 @@ const AddUserWizard = () => {
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
       />
+      <ToastContainer />
     </Layout>
   );
 };
