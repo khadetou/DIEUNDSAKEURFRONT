@@ -3,9 +3,10 @@ import FormInput from "./form-inputs";
 import Media from "./media";
 import Checkbox from "./checkbox";
 import TopBody from "./top-body";
-import { useAppDispatch, useAppSelector } from "hooks/index";
+import { useAppSelector } from "hooks/index";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 import { createProperty, reset } from "redux/property/propertySlice";
 
 const BodyAddProperty = () => {
@@ -14,6 +15,7 @@ const BodyAddProperty = () => {
     (store) => store.property
   );
 
+  const { push } = useRouter();
   const [values, setValues] = useState({
     name: "",
     address: "",
@@ -147,7 +149,9 @@ const BodyAddProperty = () => {
     if (isSuccess) {
       toast.success("Propriété créé avec succées!");
       dispatch(reset());
-      // setTimeout(()=>{})
+      setTimeout(() => {
+        push("/admin/list");
+      }, 2000);
     }
     dispatch(reset());
   }, [isError, dispatch, message, isSuccess]);
