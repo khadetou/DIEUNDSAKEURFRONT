@@ -1,7 +1,157 @@
-import React from "react";
+import { useState, useEffect, ChangeEvent } from "react";
+import FormInput from "./form-inputs";
+import Media from "./media";
+import Checkbox from "./checkbox";
 import TopBody from "./top-body";
+import { useAppDispatch, useAppSelector } from "hooks/index";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { createProperty, reset } from "redux/property/propertySlice";
 
 const BodyAddProperty = () => {
+  const dispatch = useDispatch();
+  const { isError, isSuccess, message } = useAppSelector(
+    (store) => store.property
+  );
+
+  const [values, setValues] = useState({
+    name: "",
+    address: "",
+    area: 0,
+    type: "",
+    description: "",
+    price: "",
+    video: "",
+  });
+  const { address, area, description, name, price, type, video } = values;
+  const [checkboxVals, setCheckboxVals] = useState({
+    balcony: false,
+    airconditioning: false,
+    cctv: false,
+    elevator: false,
+    emergencyexit: false,
+    internet: false,
+    laundry: false,
+    parking: false,
+    pool: false,
+    securityguard: false,
+    terrace: false,
+  });
+  const {
+    airconditioning,
+    balcony,
+    cctv,
+    elevator,
+    emergencyexit,
+    internet,
+    laundry,
+    parking,
+    pool,
+    securityguard,
+    terrace,
+  } = checkboxVals;
+  const [status, setStatus] = useState("SELL");
+  const [rooms, setRooms] = useState("1");
+  const [beds, setBeds] = useState("1");
+  const [baths, setBaths] = useState("1");
+  const [region, setRegion] = useState("Dakar");
+  const [location, setLocation] = useState("Castors");
+
+  const [imagesPrev, setImagesPrev] = useState<any>([]);
+  const [images, setImages] = useState<any>([]);
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+    // console.log(
+    //   Number(values.price).toLocaleString("fr-FR", {
+    //     style: "currency",
+    //     currency: "XOF",
+    //     currencyDisplay: "narrowSymbol",
+    //   })
+    // );
+  };
+
+  const onChangeImage = (e: any) => {
+    const files = Array.from(e.target.files);
+    setImages([]);
+    setImagesPrev([]);
+
+    files.forEach((file: any) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImages((oldArray: any) => [...oldArray, reader.result]);
+          setImagesPrev((oldArray: any) => [...oldArray, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const onChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+    setCheckboxVals({ ...checkboxVals, [e.target.name]: e.target.checked });
+  };
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+
+    const propertyData = {
+      address,
+      type,
+      area: Number(area),
+      price: Number(price),
+      description,
+      name,
+      video,
+      status,
+      rooms: Number(rooms),
+      beds: Number(beds),
+      baths: Number(baths),
+      region,
+      location,
+      airconditioning,
+      balcony,
+      cctv,
+      elevator,
+      emergencyexit,
+      internet,
+      laundry,
+      parking,
+      pool,
+      securityguard,
+      terrace,
+      images,
+    };
+
+    console.log(propertyData);
+    if (images.length === 0) {
+      return toast.error("Upload an image");
+    }
+
+    dispatch(createProperty(propertyData));
+  };
+
+  useEffect(() => {
+    if (isError) {
+      if (
+        message.message !== "undefined" &&
+        message.message.length > 0 &&
+        Array.isArray(message.message)
+      ) {
+        let list: Array<string> = [...message.message];
+        list.map((item: any) => toast.error(item));
+      } else {
+        toast.error(message.message);
+      }
+    }
+    if (isSuccess) {
+      toast.success("Propriété créé avec succées!");
+      dispatch(reset());
+      // setTimeout(()=>{})
+    }
+    dispatch(reset());
+  }, [isError, dispatch, message, isSuccess]);
+
   return (
     <div className="page-body">
       <TopBody />
@@ -13,318 +163,33 @@ const BodyAddProperty = () => {
                 <h5>Add property details</h5>
               </div>
               <div className="card-body admin-form">
-                <form className="row gx-3">
-                  <div className="form-group col-sm-4">
-                    <label>Property Type</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="office,villa,apartment"
-                      required
-                    />
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Property Status</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>For Sale</span>{" "}
-                        <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">For Rent</a>
-                        <a className="dropdown-item">For Sale</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Property Price</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="$2800"
-                      required
-                    />
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Max Rooms</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>1</span> <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">2</a>
-                        <a className="dropdown-item">3</a>
-                        <a className="dropdown-item">4</a>
-                        <a className="dropdown-item">5</a>
-                        <a className="dropdown-item">6</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Beds</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>1</span> <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">2</a>
-                        <a className="dropdown-item">3</a>
-                        <a className="dropdown-item">4</a>
-                        <a className="dropdown-item">5</a>
-                        <a className="dropdown-item">6</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Baths</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>1</span> <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">2</a>
-                        <a className="dropdown-item">3</a>
-                        <a className="dropdown-item">4</a>
-                        <a className="dropdown-item">5</a>
-                        <a className="dropdown-item">6</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Area</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="85 sq ft"
-                    />
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Price</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="$3000"
-                    />
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Agencies</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>Premiere</span>{" "}
-                        <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">Blue Sky</a>
-                        <a className="dropdown-item">Zephyr</a>
-                        <a className="dropdown-item">Premiere</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-12">
-                    <label>Description</label>
-                    <textarea className="form-control" rows={4}></textarea>
-                  </div>
-                  <div className="form-group col-sm-6">
-                    <label>Address</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Address of your property"
-                    />
-                  </div>
-                  <div className="form-group col-sm-6">
-                    <label>Zip code</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="39702"
-                    />
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Any Country</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>Austria</span>{" "}
-                        <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">Austria</a>
-                        <a className="dropdown-item">Brazil</a>
-                        <a className="dropdown-item">New york</a>
-                        <a className="dropdown-item">USA</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Any City</label>
-                    <div className="dropdown">
-                      <span
-                        className="dropdown-toggle font-rubik"
-                        data-bs-toggle="dropdown"
-                      >
-                        <span>Amreli</span>{" "}
-                        <i className="fas fa-angle-down"></i>
-                      </span>
-                      <div className="dropdown-menu text-start">
-                        <a className="dropdown-item">Gandhinagar</a>
-                        <a className="dropdown-item">Bharuch</a>
-                        <a className="dropdown-item">Amreli</a>
-                        <a className="dropdown-item">Ahmadabad</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group col-sm-4">
-                    <label>Landmark</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="landmark place name"
-                    />
-                  </div>
-                </form>
-                <div className="dropzone-admin">
-                  <label>Media</label>
-                  <form
-                    className="dropzone"
-                    id="multiFileUpload"
-                    action="https://themes.pixelstrap.com/upload.php"
-                  >
-                    <div className="dz-message needsclick">
-                      <i className="fas fa-cloud-upload-alt"></i>
-                      <h6>Drop files here or click to upload.</h6>
-                    </div>
-                  </form>
-                </div>
-                <form className="row gx-3">
-                  <div className="form-group col-sm-12">
-                    <label>video (mp4)</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="mp4 video link"
-                    />
-                  </div>
-                  <div className="form-group col-sm-12 mb-0">
-                    <label>Additional features</label>
-                    <div className="additional-checkbox">
-                      <label htmlFor="chk-ani">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani"
-                          type="checkbox"
-                        />{" "}
-                        Emergency Exit
-                      </label>
-                      <label htmlFor="chk-ani1">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani1"
-                          type="checkbox"
-                        />{" "}
-                        CCTV
-                      </label>
-                      <label htmlFor="chk-ani2">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani2"
-                          type="checkbox"
-                          checked
-                        />{" "}
-                        Free Wi-Fi
-                      </label>
-                      <label htmlFor="chk-ani3">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani3"
-                          type="checkbox"
-                        />{" "}
-                        Free Parking In The Area
-                      </label>
-                      <label htmlFor="chk-ani4">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani4"
-                          type="checkbox"
-                        />{" "}
-                        Air Conditioning
-                      </label>
-                      <label htmlFor="chk-ani5">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani5"
-                          type="checkbox"
-                        />{" "}
-                        Security Guard
-                      </label>
-                      <label htmlFor="chk-ani6">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani6"
-                          type="checkbox"
-                          checked
-                        />{" "}
-                        Terrace
-                      </label>
-                      <label htmlFor="chk-ani7">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani7"
-                          type="checkbox"
-                        />{" "}
-                        Laundry Service
-                      </label>
-                      <label htmlFor="chk-ani8">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani8"
-                          type="checkbox"
-                        />{" "}
-                        Elevator Lift
-                      </label>
-                      <label htmlFor="chk-ani9">
-                        <input
-                          className="checkbox_animated color-4"
-                          id="chk-ani9"
-                          type="checkbox"
-                          checked
-                        />{" "}
-                        Balcony
-                      </label>
-                    </div>
-                  </div>
-                  <div className="form-btn col-sm-12">
-                    <button
-                      type="button"
-                      className="btn btn-pill btn-gradient color-4"
-                    >
-                      Submit
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-pill btn-dashed color-4"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
+                <FormInput
+                  values={values}
+                  onChange={onChange}
+                  status={status}
+                  setStatus={setStatus}
+                  rooms={rooms}
+                  setRooms={setRooms}
+                  beds={beds}
+                  baths={baths}
+                  setBeds={setBeds}
+                  setBaths={setBaths}
+                  region={region}
+                  setRegion={setRegion}
+                  location={location}
+                  setLocation={setLocation}
+                />
+                <Media
+                  onChangeImage={onChangeImage}
+                  images={images}
+                  imagesPrev={imagesPrev}
+                />
+                <Checkbox
+                  values={values}
+                  onChange={onChange}
+                  onChangeCheckbox={onChangeCheckbox}
+                  onSubmit={onSubmit}
+                />
               </div>
             </div>
           </div>

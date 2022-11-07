@@ -9,6 +9,7 @@ import { getCookie } from "redux/auth/authService";
 import { logout, getUser } from "redux/auth/authSlice";
 import { wrapper } from "redux/store";
 import AddpropertyBody from "screens/Myproperties/addproperty";
+import { ToastContainer } from "react-toastify";
 
 const Addproperty = () => {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ const Addproperty = () => {
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
       />
+      <ToastContainer />
     </Layout>
   );
 };

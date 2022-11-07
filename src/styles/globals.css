@@ -14,6 +14,13 @@ a.admin {
 .slick-dots li button:before {
   opacity: 1 !important;
 }
+
+input.input-number-arrow::-webkit-outer-spin-button,
+input.input-number-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

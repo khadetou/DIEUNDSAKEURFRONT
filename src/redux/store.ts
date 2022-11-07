@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import AuthReducer from "./auth/authSlice";
+import PropertyReducer from "./property/propertySlice";
 
 export const makeStore: any = () =>
   configureStore({
     reducer: {
       auth: AuthReducer,
+      property: PropertyReducer,
       devTools: process.env.NODE_ENV !== "production",
     },
   });
