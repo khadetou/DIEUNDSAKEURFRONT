@@ -150,7 +150,7 @@ const BodyAddProperty = () => {
       toast.success("Propriété créé avec succées!");
       dispatch(reset());
       setTimeout(() => {
-        push("/admin/list");
+        push("/dashboard/list");
       }, 2000);
     }
     dispatch(reset());

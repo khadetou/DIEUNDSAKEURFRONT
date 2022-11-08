@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import propertyService from "./propertyService";
-import productsService from "./propertyService";
 
 interface PropertyState {
   properties: any[];
@@ -43,6 +42,50 @@ export const createProperty = createAsyncThunk(
   }
 );
 
+// GET ALL PRODUCTS
+export const getAllProperty = createAsyncThunk(
+  "property/getAll",
+  async (data: any, thunkAPI: any) => {
+    console.log(data);
+    try {
+      return await propertyService.getAllProperty(
+        data.req,
+        data.keyword,
+        data.pageNumber
+      );
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// DELETE PROPERTY
+export const deleteProperty = createAsyncThunk(
+  "property/delete",
+  async (id: string, thunkAPI: any) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      return await propertyService.deleteProperty(id, token);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const propertySlice = createSlice({
   name: "property",
   initialState,
@@ -71,9 +114,38 @@ export const propertySlice = createSlice({
         }
       )
       .addCase(createProperty.rejected, (state: PropertyState, action: any) => {
-        (state.isLoading = false),
-          (state.isError = true),
-          (state.message = action.payload);
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getAllProperty.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllProperty.fulfilled, (state: any, action: any) => {
+        state.isLoading = false;
+        state.page = action.payload.page;
+        state.pages = action.payload.pages;
+        state.properties = action.payload.properties;
+      })
+      .addCase(getAllProperty.rejected, (state: any, action: any) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteProperty.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteProperty.fulfilled, (state: any, action: any) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.properties = state.properties.filter(
+          (property: any) => property._id !== action.payload.id
+        );
+      })
+      .addCase(deleteProperty.rejected, (state: PropertyState, action: any) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

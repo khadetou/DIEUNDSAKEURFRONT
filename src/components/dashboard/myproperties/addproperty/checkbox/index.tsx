@@ -138,10 +138,10 @@ const Checkbox: FC<CheckboxProps> = ({
             />{" "}
             balcon
           </label>
-          <label htmlFor="chk-ani9">
+          <label htmlFor="pool">
             <input
               className="checkbox_animated color-4"
-              id="chk-ani9"
+              id="pool"
               type="checkbox"
               name="pool"
               checked={values.pool}

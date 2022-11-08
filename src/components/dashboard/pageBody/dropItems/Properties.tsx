@@ -53,8 +53,6 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
   const { user, isError, isAuthenticated, isSuccess, isLoading, message } =
     useAppSelector((store) => store.auth);
 
-  console.log(user.roles);
-
   return (
     <li
       className="sidebar-item"
