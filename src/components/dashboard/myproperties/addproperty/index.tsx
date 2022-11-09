@@ -64,13 +64,6 @@ const BodyAddProperty = () => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    // console.log(
-    //   Number(values.price).toLocaleString("fr-FR", {
-    //     style: "currency",
-    //     currency: "XOF",
-    //     currencyDisplay: "narrowSymbol",
-    //   })
-    // );
   };
 
   const onChangeImage = (e: any) => {
@@ -125,7 +118,6 @@ const BodyAddProperty = () => {
       images,
     };
 
-    console.log(propertyData);
     if (images.length === 0) {
       return toast.error("Upload an image");
     }

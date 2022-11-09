@@ -42,16 +42,106 @@ export const createProperty = createAsyncThunk(
   }
 );
 
-// GET ALL PRODUCTS
+// GET ALL PROPERTY
 export const getAllProperty = createAsyncThunk(
   "property/getAll",
   async (data: any, thunkAPI: any) => {
-    console.log(data);
     try {
       return await propertyService.getAllProperty(
         data.req,
         data.keyword,
         data.pageNumber
+      );
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// UPDATE PROPERTY
+export const updateProperty = createAsyncThunk(
+  "property/update",
+  async (propertysData: any, thunkAPI: any) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const { id } = propertysData.id;
+      return await propertyService.updateProperty(
+        propertysData.Data,
+        token,
+        id
+      );
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// GET PROPERTY BY
+export const getPropertyById = createAsyncThunk(
+  "property/getById",
+  async (id: string, thunkAPI: any) => {
+    try {
+      return await propertyService.getPropertyById(id);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+// GET MY PROPERTY
+export const getMyProperty = createAsyncThunk(
+  "property/getMyPropety",
+  async (data: any, thunkAPI: any) => {
+    try {
+      return await propertyService.getMyProperty(
+        data.token,
+        data.req,
+        data.keyword,
+        data.pageNumber
+      );
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// CREATE REVIEWS
+export const createReviews = createAsyncThunk(
+  "create/review",
+  async (propertysData: any, thunkAPI: any) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      return await propertyService.createReview(
+        propertysData.id,
+        propertysData.data,
+        token
       );
     } catch (error: any) {
       const message =
@@ -132,20 +222,75 @@ export const propertySlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(getPropertyById.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(getPropertyById.fulfilled, (state: any, action: any) => {
+        state.isLoading = false;
+        state.property = action.payload;
+      })
+      .addCase(getPropertyById.rejected, (state: any, action: any) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(getMyProperty.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(getMyProperty.fulfilled, (state: any, action: any) => {
+        state.isLoading = false;
+        state.page = action.payload.page;
+        state.pages = action.payload.pages;
+        state.properties = action.payload.properties;
+      })
+      .addCase(getMyProperty.rejected, (state: PropertyState, action: any) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(updateProperty.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        updateProperty.fulfilled,
+        (state: PropertyState, action: any) => {
+          state.isSuccess = true;
+          state.isLoading = false;
+          state.property = action.payload;
+        }
+      )
+      .addCase(updateProperty.rejected, (state: PropertyState, action: any) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
       .addCase(deleteProperty.pending, (state: any) => {
         state.isLoading = true;
       })
-      .addCase(deleteProperty.fulfilled, (state: any, action: any) => {
+      .addCase(deleteProperty.fulfilled, (state: PropertyState, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.properties = state.properties.filter(
-          (property: any) => property._id !== action.payload.id
+          (property: any) => property._id !== action.payload._id
         );
       })
       .addCase(deleteProperty.rejected, (state: PropertyState, action: any) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(createReviews.rejected, (state: any, action: any) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(createReviews.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(createReviews.fulfilled, (state: any, action: any) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.property = action.payload;
       });
   },
 });

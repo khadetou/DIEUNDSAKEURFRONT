@@ -1,16 +1,85 @@
 import React from "react";
-import Card1 from "./card/card1";
+import Card from "./card/Card";
 import Pagination from "./pagination";
+import { useAppDispatch, useAppSelector } from "hooks/index";
 
 const Bottom = () => {
+  const { isSuccess, isError, isLoading, properties } = useAppSelector(
+    (store) => store.property
+  );
+  const dispatch = useAppDispatch();
   return (
     <div className="col-xl-12">
       <div className="property-2 row column-sm property-label property-grid">
-        <Card1 />
-        <Card1 />
-        <Card1 />
-        <Card1 />
-        <Card1 />
+        {properties.length !== 0 ? (
+          properties.map(
+            (
+              {
+                name,
+                address,
+                region,
+                location,
+                video,
+                type,
+                status,
+                price,
+                rooms,
+                baths,
+                beds,
+                emergencyexit,
+                cctv,
+                internet,
+                parking,
+                airconditioning,
+                securityguard,
+                terrace,
+                laundry,
+                elavator,
+                balcony,
+                pool,
+                area,
+                description,
+                images,
+                createdAt,
+                _id,
+              }: any,
+              idx: any
+            ) => (
+              <Card
+                key={idx}
+                name={name}
+                address={address}
+                region={region}
+                location={location}
+                video={video}
+                type={type}
+                status={status}
+                price={price}
+                rooms={rooms}
+                baths={baths}
+                beds={beds}
+                images={images}
+                emergencyexit={emergencyexit}
+                cctv={cctv}
+                internet={internet}
+                parking={parking}
+                airconditioning={airconditioning}
+                securityguard={securityguard}
+                terrace={terrace}
+                laundry={laundry}
+                elevator={elavator}
+                balcony={balcony}
+                pool={pool}
+                area={area}
+                _id={_id}
+                description={description}
+                createdAt={createdAt}
+              />
+            )
+          )
+        ) : (
+          <div>You don't have any property yet!</div>
+        )}
       </div>
       <Pagination />
     </div>
