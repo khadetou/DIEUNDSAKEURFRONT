@@ -1,9 +1,14 @@
 import Slick, { Settings } from "react-slick";
 import { Camera, Shuffle, Heart, Edit, Info, Trash2 } from "react-feather";
+import Link from "next/link";
 import { FC, useEffect } from "react";
 import Image from "next/image";
-import { useAppDispatch } from "hooks/index";
+import { useAppDispatch, useAppSelector } from "hooks/index";
 import { deleteProperty } from "redux/property/propertySlice";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 interface CardProps {
   _id: string;
@@ -86,7 +91,29 @@ const Card: FC<CardProps> = ({
     });
   }, []);
 
+  const { isSuccess, isError, isLoading } = useAppSelector(
+    (store) => store.property
+  );
+
   const dispatch = useAppDispatch();
+
+  const onDelete = () => {
+    MySwal.fire({
+      title: "Etes vous sure ?",
+      text: "De vouloire supprimé",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#218838",
+      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Oui, supprimé!",
+      cancelButtonText: "No, annulé!",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProperty(_id));
+      }
+    });
+  };
 
   return (
     <div className="col-xl-4 col-md-6 xl-6">
@@ -209,13 +236,10 @@ const Card: FC<CardProps> = ({
               <button type="button">
                 <Info size={20} />
               </button>
-              <button>
+              <Link href={`/dashboard/edit/edit-property/${_id}`}>
                 <Edit size={20} />
-              </button>
-              <button
-                className="hover:tw-text-red-600"
-                onClick={() => dispatch(deleteProperty(_id))}
-              >
+              </Link>
+              <button className="hover:tw-text-red-600" onClick={onDelete}>
                 <Trash2 size={20} />
               </button>
             </div>
