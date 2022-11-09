@@ -89,15 +89,15 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
                   Ajouter une proprièté
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
-                  href="/dashboard/edit-property"
-                  className={pathname.endsWith("edit-property") ? "active" : ""}
+                  href="/dashboard/edit/edit-property"
+                  className={pathname.includes("edit-property") ? "active" : ""}
                 >
                   <ChevronsRight />
                   Modifier vos proprièté
                 </Link>
-              </li>
+              </li> */}
             </>
           )}
           <li>

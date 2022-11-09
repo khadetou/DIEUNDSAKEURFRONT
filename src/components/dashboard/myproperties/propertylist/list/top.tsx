@@ -18,6 +18,7 @@ const Top = () => {
                   name="step_1"
                   value="ani1"
                   checked
+                  readOnly
                 />
                 <span className="switch-state"></span>
               </label>

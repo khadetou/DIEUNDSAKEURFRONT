@@ -68,15 +68,12 @@ export const getAllProperty = createAsyncThunk(
 // UPDATE PROPERTY
 export const updateProperty = createAsyncThunk(
   "property/update",
-  async (propertysData: any, thunkAPI: any) => {
+  async (propertyData: any, thunkAPI: any) => {
+    console.log(propertyData);
     try {
       const token = thunkAPI.getState().auth.token;
-      const { id } = propertysData.id;
-      return await propertyService.updateProperty(
-        propertysData.Data,
-        token,
-        id
-      );
+      const { id } = propertyData;
+      return await propertyService.updateProperty(propertyData.data, token, id);
     } catch (error: any) {
       const message =
         (error.response &&
