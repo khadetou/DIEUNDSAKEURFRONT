@@ -19,13 +19,12 @@ const BodyAddProperty = () => {
   const [values, setValues] = useState({
     name: "",
     address: "",
-    area: 0,
+    area: "",
     type: "",
     description: "",
-    price: "",
     video: "",
   });
-  const { address, area, description, name, price, type, video } = values;
+  const { address, area, description, name, type, video } = values;
   const [checkboxVals, setCheckboxVals] = useState({
     balcony: false,
     airconditioning: false,
@@ -58,7 +57,7 @@ const BodyAddProperty = () => {
   const [baths, setBaths] = useState("1");
   const [region, setRegion] = useState("Dakar");
   const [location, setLocation] = useState("Castors");
-
+  const [price, setPrice] = useState("");
   const [imagesPrev, setImagesPrev] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
 
@@ -93,7 +92,7 @@ const BodyAddProperty = () => {
     const propertyData = {
       address,
       type,
-      area: Number(area),
+      area,
       price: Number(price),
       description,
       name,
@@ -174,6 +173,8 @@ const BodyAddProperty = () => {
                   setRegion={setRegion}
                   location={location}
                   setLocation={setLocation}
+                  price={price}
+                  setPrice={setPrice}
                 />
                 <Media
                   onChangeImage={onChangeImage}
@@ -183,6 +184,7 @@ const BodyAddProperty = () => {
                 <Checkbox
                   values={values}
                   onChange={onChange}
+                  checkboxVals={checkboxVals}
                   onChangeCheckbox={onChangeCheckbox}
                   onSubmit={onSubmit}
                 />

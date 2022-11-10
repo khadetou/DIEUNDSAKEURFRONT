@@ -23,10 +23,9 @@ const BodyAddProperty = () => {
     area: "",
     type: "",
     description: "",
-    price: "",
     video: "",
   });
-  const { address, area, description, name, price, type, video } = values;
+  const { address, area, description, name, type, video } = values;
   const [checkboxVals, setCheckboxVals] = useState({
     balcony: false,
     airconditioning: false,
@@ -59,7 +58,7 @@ const BodyAddProperty = () => {
   const [baths, setBaths] = useState("1");
   const [region, setRegion] = useState("Dakar");
   const [location, setLocation] = useState("Castors");
-
+  const [price, setPrice] = useState("");
   const [imagesPrev, setImagesPrev] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
   const [oldImages, setOldImages] = useState<any>([]);
@@ -136,6 +135,7 @@ const BodyAddProperty = () => {
       setRegion(property.region);
       setLocation(property.location);
       setOldImages(property.images);
+      setPrice(property.price);
       setCheckboxVals({
         balcony: property.balcony,
         airconditioning: property.airconditioning,
@@ -155,7 +155,6 @@ const BodyAddProperty = () => {
         area: property && property.area,
         type: property && property.type,
         description: property && property.description,
-        price: property && property.price,
         video: property && property.video,
       });
     }
@@ -190,6 +189,8 @@ const BodyAddProperty = () => {
               <div className="card-body admin-form">
                 <FormInput
                   values={values}
+                  price={price}
+                  setPrice={setPrice}
                   onChange={onChange}
                   status={status}
                   setStatus={setStatus}

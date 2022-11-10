@@ -25,6 +25,7 @@ specifiers:
   react: 18.2.0
   react-apexcharts: ^1.4.0
   react-color: ^2.19.3
+  react-currency-input-field: ^3.6.9
   react-dom: 18.2.0
   react-feather: ^2.0.10
   react-icons: ^4.6.0
@@ -54,6 +55,7 @@ dependencies:
   react: 18.2.0
   react-apexcharts: 1.4.0_e4j53cvziz6v77l6wz7iq3vrmi
   react-color: 2.19.3_react@18.2.0
+  react-currency-input-field: 3.6.9_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-feather: 2.0.10_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
@@ -2122,6 +2124,14 @@ packages:
       react: 18.2.0
       reactcss: 1.2.3_react@18.2.0
       tinycolor2: 1.4.2
+    dev: false
+
+  /react-currency-input-field/3.6.9_react@18.2.0:
+    resolution: {integrity: sha512-GNqG1Np+dz3VfBhDc9pFPIyar9SgB/fRjIofFSXOoyFNffda5r24n6LSoXfqQ9L7IKRDoUwveMMJV5GCM2eByw==}
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:

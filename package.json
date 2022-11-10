@@ -22,6 +22,7 @@
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-color": "^2.19.3",
+    "react-currency-input-field": "^3.6.9",
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
     "react-icons": "^4.6.0",

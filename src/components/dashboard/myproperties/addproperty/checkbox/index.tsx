@@ -1,18 +1,30 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
+import { useAppSelector } from "hooks/index";
+import Link from "next/link";
+import ButtonLoading from "components/ButtonLoading";
 
 interface CheckboxProps {
   values: any;
   onChange: (e: any) => void;
   onChangeCheckbox: (e: any) => void;
   onSubmit: (e: any) => void;
+  checkboxVals: any;
 }
 
 const Checkbox: FC<CheckboxProps> = ({
   values,
+  checkboxVals,
   onChange,
   onChangeCheckbox,
   onSubmit,
 }) => {
+  const { isLoading, isSuccess } = useAppSelector((store) => store.property);
+  const [disabled, setDisabled] = useState(false);
+  useEffect(() => {
+    if (isSuccess) {
+      setDisabled(true);
+    }
+  }, [isSuccess]);
   return (
     <form className="row gx-3" onSubmit={onSubmit}>
       <div className="form-group col-sm-12">
@@ -35,7 +47,7 @@ const Checkbox: FC<CheckboxProps> = ({
               id="chk-ani"
               type="checkbox"
               name="emergencyexit"
-              checked={values.emergencyexit}
+              checked={checkboxVals.emergencyexit}
               onChange={onChangeCheckbox}
             />{" "}
             Sortie de secours
@@ -45,7 +57,7 @@ const Checkbox: FC<CheckboxProps> = ({
               className="checkbox_animated color-4"
               id="chk-ani1"
               name="cctv"
-              checked={values.cctv}
+              checked={checkboxVals.cctv}
               onChange={onChangeCheckbox}
               type="checkbox"
             />{" "}
@@ -58,7 +70,7 @@ const Checkbox: FC<CheckboxProps> = ({
               type="checkbox"
               name="internet"
               onChange={onChangeCheckbox}
-              checked={values.internet}
+              checked={checkboxVals.internet}
             />{" "}
             Internet
           </label>
@@ -67,7 +79,7 @@ const Checkbox: FC<CheckboxProps> = ({
               className="checkbox_animated color-4"
               id="chk-ani3"
               name="parking"
-              checked={values.parking}
+              checked={checkboxVals.parking}
               onChange={onChangeCheckbox}
               type="checkbox"
             />{" "}
@@ -79,7 +91,7 @@ const Checkbox: FC<CheckboxProps> = ({
               id="chk-ani4"
               type="checkbox"
               name="airconditioning"
-              checked={values.airconditioning}
+              checked={checkboxVals.airconditioning}
               onChange={onChangeCheckbox}
             />{" "}
             Climatisation
@@ -101,7 +113,7 @@ const Checkbox: FC<CheckboxProps> = ({
               type="checkbox"
               name="terrace"
               onChange={onChangeCheckbox}
-              checked={values.terrace}
+              checked={checkboxVals.terrace}
             />{" "}
             Terrace
           </label>
@@ -112,7 +124,7 @@ const Checkbox: FC<CheckboxProps> = ({
               type="checkbox"
               name="laundry"
               onChange={onChangeCheckbox}
-              checked={values.laundry}
+              checked={checkboxVals.laundry}
             />{" "}
             Services de lavage (pressing)
           </label>
@@ -122,7 +134,7 @@ const Checkbox: FC<CheckboxProps> = ({
               id="chk-ani8"
               type="checkbox"
               name="elevator"
-              checked={values.elevator}
+              checked={checkboxVals.elevator}
               onChange={onChangeCheckbox}
             />{" "}
             Elevator Lift
@@ -133,7 +145,7 @@ const Checkbox: FC<CheckboxProps> = ({
               id="chk-ani9"
               type="checkbox"
               name="balcony"
-              checked={values.balcony}
+              checked={checkboxVals.balcony}
               onChange={onChangeCheckbox}
             />{" "}
             balcon
@@ -144,7 +156,7 @@ const Checkbox: FC<CheckboxProps> = ({
               id="pool"
               type="checkbox"
               name="pool"
-              checked={values.pool}
+              checked={checkboxVals.pool}
               onChange={onChangeCheckbox}
             />{" "}
             Piscine
@@ -152,8 +164,14 @@ const Checkbox: FC<CheckboxProps> = ({
         </div>
       </div>
       <div className="form-btn col-sm-12">
-        <button type="submit" className="btn btn-pill btn-gradient color-4">
-          Submit
+        <button
+          type="submit"
+          disabled={disabled || isLoading}
+          className={`btn btn-pill btn-gradient color-4 ${
+            isLoading ? "!tw-px-3 !tw-cursor-not-allowed" : ""
+          } ${disabled ? "!tw-cursor-not-allowed" : ""}`}
+        >
+          {isLoading ? <ButtonLoading /> : "Submit"}
         </button>
         <button type="button" className="btn btn-pill btn-dashed color-4">
           Cancel

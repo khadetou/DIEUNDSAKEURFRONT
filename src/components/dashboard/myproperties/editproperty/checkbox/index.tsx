@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { useAppSelector } from "hooks/index";
+import ButtonLoading from "components/ButtonLoading";
 
 interface CheckboxProps {
   values: any;
@@ -15,6 +17,13 @@ const Checkbox: FC<CheckboxProps> = ({
   onSubmit,
   checkboxVals,
 }) => {
+  const [disabled, setDisabled] = useState(false);
+  const { isSuccess, isLoading } = useAppSelector((store) => store.property);
+  useEffect(() => {
+    if (isSuccess) {
+      setDisabled(true);
+    }
+  }, [isSuccess]);
   return (
     <form className="row gx-3" onSubmit={onSubmit}>
       <div className="form-group col-sm-12">
@@ -155,8 +164,14 @@ const Checkbox: FC<CheckboxProps> = ({
         </div>
       </div>
       <div className="form-btn col-sm-12">
-        <button type="submit" className="btn btn-pill btn-gradient color-4">
-          Submit
+        <button
+          type="submit"
+          disabled={disabled || isLoading}
+          className={`btn btn-pill btn-gradient color-4 ${
+            isLoading ? "!tw-px-3 !tw-cursor-not-allowed" : ""
+          } ${disabled ? "!tw-cursor-not-allowed" : ""}`}
+        >
+          {isLoading ? <ButtonLoading /> : "Submit"}
         </button>
         <button type="button" className="btn btn-pill btn-dashed color-4">
           Cancel

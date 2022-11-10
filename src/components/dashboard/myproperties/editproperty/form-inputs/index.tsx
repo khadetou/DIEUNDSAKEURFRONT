@@ -1,6 +1,5 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
-import { useAppSelector } from "hooks/index";
-
+import CurrencyInput from "react-currency-input-field";
 interface FormInputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   values: any;
@@ -17,6 +16,8 @@ interface FormInputProps {
   region: string;
   setRegion: Dispatch<SetStateAction<string>>;
   address: string;
+  price: string;
+  setPrice: Dispatch<SetStateAction<string>>;
 }
 const FormInput: FC<FormInputProps> = ({
   onChange,
@@ -34,6 +35,8 @@ const FormInput: FC<FormInputProps> = ({
   setLocation,
   setRegion,
   address,
+  price,
+  setPrice,
 }) => {
   return (
     <form className="row gx-3">
@@ -71,10 +74,16 @@ const FormInput: FC<FormInputProps> = ({
             <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item" onClick={() => setStatus("RENT")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setStatus("RENT")}
+            >
               A Louer
             </a>
-            <a className="dropdown-item" onClick={() => setStatus("SELL")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setStatus("SELL")}
+            >
               A Vendre
             </a>
           </div>
@@ -82,12 +91,15 @@ const FormInput: FC<FormInputProps> = ({
       </div>
       <div className="form-group col-sm-4 ">
         <label>Prix de l’immobilier</label>
-        <input
+
+        <CurrencyInput
           type="text"
           className="form-control"
           name="price"
-          onChange={onChange}
-          value={values.price}
+          onValueChange={(value) => setPrice(value!)}
+          defaultValue={1000000}
+          value={price}
+          // intlConfig={{ locale: "fr-FR", currency: "XOF" }}
           placeholder="1, 800 000 F CFA"
           required
         />
@@ -111,22 +123,40 @@ const FormInput: FC<FormInputProps> = ({
             <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item" onClick={() => setRooms("1")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRooms("1")}
+            >
               1
             </a>
-            <a className="dropdown-item" onClick={() => setRooms("2")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRooms("2")}
+            >
               2
             </a>
-            <a className="dropdown-item" onClick={() => setRooms("3")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRooms("3")}
+            >
               3
             </a>
-            <a className="dropdown-item" onClick={() => setRooms("4")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRooms("4")}
+            >
               4
             </a>
-            <a className="dropdown-item" onClick={() => setRooms("5")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRooms("5")}
+            >
               5
             </a>
-            <a className="dropdown-item" onClick={() => setRooms("6")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRooms("6")}
+            >
               6
             </a>
           </div>
@@ -151,28 +181,52 @@ const FormInput: FC<FormInputProps> = ({
             <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item" onClick={() => setBeds("1")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("1")}
+            >
+              1
+            </a>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("2")}
+            >
               2
             </a>
-            <a className="dropdown-item" onClick={() => setBeds("2")}>
-              2
-            </a>
-            <a className="dropdown-item" onClick={() => setBeds("3")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("3")}
+            >
               3
             </a>
-            <a className="dropdown-item" onClick={() => setBeds("4")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("4")}
+            >
               4
             </a>
-            <a className="dropdown-item" onClick={() => setBeds("5")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("5")}
+            >
               5
             </a>
-            <a className="dropdown-item" onClick={() => setBeds("6")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("6")}
+            >
               6
             </a>
-            <a className="dropdown-item" onClick={() => setBeds("7")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("7")}
+            >
               7
             </a>
-            <a className="dropdown-item" onClick={() => setBeds("8")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBeds("8")}
+            >
               8
             </a>
           </div>
@@ -197,22 +251,40 @@ const FormInput: FC<FormInputProps> = ({
             <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item" onClick={() => setBaths("1")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBaths("1")}
+            >
               1
             </a>
-            <a className="dropdown-item" onClick={() => setBaths("2")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBaths("2")}
+            >
               2
             </a>
-            <a className="dropdown-item" onClick={() => setBaths("3")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBaths("3")}
+            >
               3
             </a>
-            <a className="dropdown-item" onClick={() => setBaths("4")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBaths("4")}
+            >
               4
             </a>
-            <a className="dropdown-item" onClick={() => setBaths("5")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBaths("5")}
+            >
               5
             </a>
-            <a className="dropdown-item" onClick={() => setBaths("6")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setBaths("6")}
+            >
               6
             </a>
           </div>
@@ -240,9 +312,9 @@ const FormInput: FC<FormInputProps> = ({
             <span>Premiere</span> <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item">Blue Sky</a>
-            <a className="dropdown-item">Zephyr</a>
-            <a className="dropdown-item">Premiere</a>
+            <a className="dropdown-item tw-cursor-pointer">Blue Sky</a>
+            <a className="dropdown-item tw-cursor-pointer">Zephyr</a>
+            <a className="dropdown-item tw-cursor-pointer">Premiere</a>
           </div>
         </div>
       </div> */}
@@ -281,19 +353,28 @@ const FormInput: FC<FormInputProps> = ({
             <span>{region}</span> <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item" onClick={() => setRegion("Dakar")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRegion("Dakar")}
+            >
               Dakar
             </a>
             <a
-              className="dropdown-item"
+              className="dropdown-item tw-cursor-pointer"
               onClick={() => setRegion("Ziguinchor")}
             >
               Ziguinchor
             </a>
-            <a className="dropdown-item" onClick={() => setRegion("Kaolack")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRegion("Kaolack")}
+            >
               Kaolack
             </a>
-            <a className="dropdown-item" onClick={() => setRegion("Thiès")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setRegion("Thiès")}
+            >
               Thiès
             </a>
           </div>
@@ -309,19 +390,28 @@ const FormInput: FC<FormInputProps> = ({
             <span>{location}</span> <i className="fas fa-angle-down"></i>
           </span>
           <div className="dropdown-menu text-start">
-            <a className="dropdown-item" onClick={() => setLocation("Almadie")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setLocation("Almadie")}
+            >
               Almadie
             </a>
-            <a className="dropdown-item" onClick={() => setLocation("HLM 5")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setLocation("HLM 5")}
+            >
               HLM 5
             </a>
             <a
-              className="dropdown-item"
+              className="dropdown-item tw-cursor-pointer"
               onClick={() => setLocation("Grand Dakar")}
             >
               Grand Dakar
             </a>
-            <a className="dropdown-item" onClick={() => setLocation("Yoff")}>
+            <a
+              className="dropdown-item tw-cursor-pointer"
+              onClick={() => setLocation("Yoff")}
+            >
               Yoff
             </a>
           </div>
