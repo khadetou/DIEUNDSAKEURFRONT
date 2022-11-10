@@ -62,6 +62,7 @@ const BodyAddProperty = () => {
   const [imagesPrev, setImagesPrev] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
   const [oldImages, setOldImages] = useState<any>([]);
+  const [validate, setValidate] = useState(false);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -91,7 +92,7 @@ const BodyAddProperty = () => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-
+    setValidate(true);
     const propertyData = {
       id: property._id,
       data: {
@@ -167,13 +168,13 @@ const BodyAddProperty = () => {
       }
     }
     if (isSuccess) {
-      toast.success("Propriété créé avec succées!");
+      toast.success("Propriété mis à avec succées!");
+      dispatch(reset());
       dispatch(reset());
       setTimeout(() => {
         push("/dashboard/list");
       }, 2000);
     }
-    // dispatch(reset());
   }, [isError, dispatch, message, isSuccess, property]);
 
   return (
@@ -205,6 +206,7 @@ const BodyAddProperty = () => {
                   location={location}
                   setLocation={setLocation}
                   address={address}
+                  validate={validate}
                 />
                 <Media
                   onChangeImage={onChangeImage}

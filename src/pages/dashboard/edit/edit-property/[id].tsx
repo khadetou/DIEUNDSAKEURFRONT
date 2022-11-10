@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import { useState } from "react";
 
 import { useMediaQuery } from "react-responsive";
+import { ToastContainer } from "react-toastify";
 import { getCookie } from "redux/auth/authService";
 import { logout, getUser } from "redux/auth/authSlice";
 import { getPropertyById } from "redux/property/propertySlice";
@@ -21,6 +22,7 @@ const EditProperty = () => {
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
       />
+      <ToastContainer />
     </Layout>
   );
 };

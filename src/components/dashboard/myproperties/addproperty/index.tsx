@@ -60,6 +60,7 @@ const BodyAddProperty = () => {
   const [price, setPrice] = useState("");
   const [imagesPrev, setImagesPrev] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
+  const [validate, setValidate] = useState(false);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -88,7 +89,7 @@ const BodyAddProperty = () => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-
+    setValidate(true);
     const propertyData = {
       address,
       type,
@@ -175,6 +176,7 @@ const BodyAddProperty = () => {
                   setLocation={setLocation}
                   price={price}
                   setPrice={setPrice}
+                  validate={validate}
                 />
                 <Media
                   onChangeImage={onChangeImage}

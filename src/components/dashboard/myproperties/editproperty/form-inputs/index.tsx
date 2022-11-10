@@ -18,6 +18,7 @@ interface FormInputProps {
   address: string;
   price: string;
   setPrice: Dispatch<SetStateAction<string>>;
+  validate: boolean;
 }
 const FormInput: FC<FormInputProps> = ({
   onChange,
@@ -37,9 +38,10 @@ const FormInput: FC<FormInputProps> = ({
   address,
   price,
   setPrice,
+  validate,
 }) => {
   return (
-    <form className="row gx-3">
+    <form className={`row gx-3 ${validate ? "was-validated" : ""}`}>
       <div className="form-group col-sm-4">
         <label>Type de propriété</label>
         <input
@@ -61,6 +63,7 @@ const FormInput: FC<FormInputProps> = ({
           name="name"
           className="form-control"
           placeholder="Maison A vendre à almadie"
+          required
         />
       </div>
       <div className="form-group col-sm-4">

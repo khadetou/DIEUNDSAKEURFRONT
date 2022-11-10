@@ -19,6 +19,7 @@ interface FormInputProps {
   setRegion: Dispatch<SetStateAction<string>>;
   price: string;
   setPrice: Dispatch<SetStateAction<string>>;
+  validate: boolean;
 }
 const FormInput: FC<FormInputProps> = ({
   onChange,
@@ -37,9 +38,10 @@ const FormInput: FC<FormInputProps> = ({
   setRegion,
   setPrice,
   price,
+  validate,
 }) => {
   return (
-    <form className="row gx-3">
+    <form className={`row gx-3 ${validate ? "was-validated" : ""}`}>
       <div className="form-group col-sm-4">
         <label>Type de propriété</label>
         <input
@@ -47,7 +49,7 @@ const FormInput: FC<FormInputProps> = ({
           name="type"
           onChange={onChange}
           value={values.type}
-          className="form-control"
+          className={`form-control `}
           placeholder="Bureau, Terrain, Villa, Apartement, Maison"
           required
         />
@@ -59,8 +61,9 @@ const FormInput: FC<FormInputProps> = ({
           value={values.name}
           onChange={onChange}
           name="name"
-          className="form-control"
+          className={`form-control `}
           placeholder="Maison A vendre à almadie"
+          required
         />
       </div>
       <div className="form-group col-sm-4">
@@ -93,7 +96,10 @@ const FormInput: FC<FormInputProps> = ({
         <label>Prix de l’immobilier</label>
         <CurrencyInput
           type="text"
-          className="form-control"
+          className={`form-control ${
+            (price !== "" && validate && "!tw-border !tw-border-[#198754]") ||
+            (price === "" && validate && "!tw-border !tw-border-[#dc3545]")
+          }`}
           name="price"
           onValueChange={(value) => setPrice(value!)}
           value={price}
@@ -292,11 +298,12 @@ const FormInput: FC<FormInputProps> = ({
         <label>Surfaçe</label>
         <input
           type="text"
-          className="form-control"
+          className={`form-control `}
           onChange={onChange}
           value={values.area}
           name="area"
           placeholder="8500 m²"
+          required
         />
       </div>
 
@@ -324,6 +331,7 @@ const FormInput: FC<FormInputProps> = ({
           value={values.description}
           onChange={(e: any) => onChange(e)}
           rows={4}
+          required
         ></textarea>
       </div>
       <div className="form-group col-sm-6">
@@ -334,6 +342,7 @@ const FormInput: FC<FormInputProps> = ({
           name="address"
           onChange={onChange}
           placeholder="Address of your property"
+          required
         />
       </div>
       {/* <div className="form-group col-sm-6">
