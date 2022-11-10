@@ -47,6 +47,7 @@ const Bottom = () => {
             ) => (
               <Card
                 key={idx}
+                _id={_id}
                 name={name}
                 address={address}
                 region={region}
@@ -71,7 +72,6 @@ const Bottom = () => {
                 balcony={balcony}
                 pool={pool}
                 area={area}
-                _id={_id}
                 description={description}
                 createdAt={createdAt}
               />

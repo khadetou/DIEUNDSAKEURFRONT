@@ -11,8 +11,8 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 interface CardProps {
-  _id: string;
   name: string;
+  _id: string;
   address: string;
   region: string;
   location: string;
@@ -137,7 +137,7 @@ const Card: FC<CardProps> = ({
                   idx: number
                 ) => (
                   <a
-                    key={public_url}
+                    key={idx}
                     className={`bg-size tw-relative !tw-bg-cover !tw-bg-center !tw-bg-no-repeat !tw-block`}
                   >
                     <Image
