@@ -8,8 +8,8 @@ const TopBody = () => {
           <div className="col-sm-6">
             <div className="page-header-left">
               <h3>
-                Add agent
-                <small>Welcome to admin panel</small>
+                Ajouter un agent
+                <small>Bienvenue dans le panneau d’administration</small>
               </h3>
             </div>
           </div>

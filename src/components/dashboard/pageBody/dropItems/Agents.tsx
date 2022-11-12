@@ -94,10 +94,10 @@ const Agents: FC<AgentsProps> = ({ active, setActive }) => {
               className={pathname.endsWith("add-agent") ? "active" : ""}
             >
               <ChevronsRight />
-              Add agent
+              Ajouter un agent
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/dashboard/add-agent-wizard"
               className={pathname.endsWith("add-agent-wizard") ? "active" : ""}
@@ -106,7 +106,7 @@ const Agents: FC<AgentsProps> = ({ active, setActive }) => {
               Add agent wizard{" "}
               <span className="label label-shadow ms-1">new</span>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               href="/dashboard/edit-agent"

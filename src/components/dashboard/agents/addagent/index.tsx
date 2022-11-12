@@ -10,13 +10,13 @@ const BodyAddUser = () => {
           <div className="col-lg-12">
             <div className="card">
               <div className="card-header pb-0">
-                <h5>Add agent details</h5>
+                <h5>Ajouter les détails de l’agent</h5>
               </div>
               <div className="card-body admin-form">
                 <form className="row gx-3">
                   <div className="form-group col-md-4 col-sm-6">
                     <label>
-                      First name <span className="font-danger">*</span>
+                      Prénom <span className="font-danger">*</span>
                     </label>
                     <input
                       type="text"
@@ -27,7 +27,7 @@ const BodyAddUser = () => {
                   </div>
                   <div className="form-group col-md-4 col-sm-6">
                     <label>
-                      Last name <span className="font-danger">*</span>
+                      Nom <span className="font-danger">*</span>
                     </label>
                     <input
                       type="text"
@@ -38,7 +38,7 @@ const BodyAddUser = () => {
                   </div>
                   <div className="form-group col-md-4 col-sm-6">
                     <label>
-                      Gender <span className="font-danger">*</span>
+                      Genre <span className="font-danger">*</span>
                     </label>
                     <div className="dropdown">
                       <span
@@ -53,14 +53,14 @@ const BodyAddUser = () => {
                           Male
                         </a>
                         <a className="dropdown-item" href="javascript:void(0)">
-                          Female
+                          Femelle
                         </a>
                       </div>
                     </div>
                   </div>
                   <div className="form-group col-md-4 col-sm-6">
                     <label>
-                      Phone number <span className="font-danger">*</span>
+                      Numéro Téléphone <span className="font-danger">*</span>
                     </label>
                     <input
                       type="number"
@@ -71,7 +71,7 @@ const BodyAddUser = () => {
                   </div>
                   <div className="form-group col-md-4 col-sm-6">
                     <label>
-                      Date of birth <span className="font-danger">*</span>
+                      Date de naissance <span className="font-danger">*</span>
                     </label>
                     <input
                       className="form-control"
@@ -81,7 +81,7 @@ const BodyAddUser = () => {
                   </div>
                   <div className="form-group col-md-4 col-sm-6">
                     <label>
-                      Email Address <span className="font-danger">*</span>
+                      Address Email <span className="font-danger">*</span>
                     </label>
                     <input
                       type="email"
@@ -90,26 +90,7 @@ const BodyAddUser = () => {
                       required
                     />
                   </div>
-                  <div className="form-group col-sm-6">
-                    <label>
-                      Password <span className="font-danger">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Enter your password"
-                    />
-                  </div>
-                  <div className="form-group col-sm-6">
-                    <label>
-                      Confirm Password <span className="font-danger">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Enter your password"
-                    />
-                  </div>
+
                   <div className="form-group col-sm-12">
                     <label>Description</label>
                     <textarea className="form-control" rows={4}></textarea>
@@ -122,14 +103,6 @@ const BodyAddUser = () => {
                       placeholder="Enter your Address"
                     />
                   </div>
-                  <div className="form-group col-sm-6">
-                    <label>Zip code</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Enter pin code"
-                    />
-                  </div>
                 </form>
                 <div className="dropzone-admin mb-0">
                   <label>Media</label>
@@ -140,7 +113,9 @@ const BodyAddUser = () => {
                   >
                     <div className="dz-message needsclick">
                       <i className="fas fa-cloud-upload-alt"></i>
-                      <h6>Drop files here or click to upload.</h6>
+                      <h6>
+                        Déposez des fichiers ici ou cliquez pour télécharger.
+                      </h6>
                     </div>
                   </form>
                 </div>
