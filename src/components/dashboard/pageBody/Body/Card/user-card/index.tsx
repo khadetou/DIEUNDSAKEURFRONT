@@ -2,7 +2,7 @@ import React from "react";
 import TopBody from "../../top-body";
 import User from "./cards/User";
 import Filter from "./cards/Filter";
-import Agence from "./cards/Agence";
+import Agency from "./cards/Agency";
 import Owner from "./cards/Owner";
 
 const UserCard = () => {
@@ -13,7 +13,7 @@ const UserCard = () => {
         <div className="row">
           <div className="col-xl-3 xl-6 col-md-6 project-widgets">
             <User />
-            <Agence />
+            <Agency />
             <Owner />
           </div>
           <Filter />

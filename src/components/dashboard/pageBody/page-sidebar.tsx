@@ -107,10 +107,9 @@ const PageSidebar: FC<PageSidebarProps> = ({
 
             <ManageUsers active={active} setActive={setActive} />
 
-            {(user && user.role === "admin") ||
-              (user && user.role === "agence" && (
-                <Agents active={active} setActive={setActive} />
-              ))}
+            {user && ["admin", "agency"].includes(user.roles) && (
+              <Agents active={active} setActive={setActive} />
+            )}
 
             <li className="sidebar-item">
               <Link

@@ -3,9 +3,9 @@ import { Plus } from "react-feather";
 import { Home } from "components/icons/index";
 import Link from "next/link";
 
-const Seller = () => {
+const Agency = () => {
   return (
-    <Link href="/dashboard/add-user-wizard?agence=agence">
+    <Link href="/dashboard/add-user-wizard?agency=agency">
       <div className="card tw-cursor-pointer hover:-tw-translate-y-2 tw-group hover:tw-scale-[1.025] tw-transition-all tw-duration-500">
         <div className="card-body">
           <div className="media">
@@ -26,4 +26,4 @@ const Seller = () => {
   );
 };
 
-export default Seller;
+export default Agency;

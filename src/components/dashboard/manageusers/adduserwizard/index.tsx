@@ -26,7 +26,7 @@ const BodyAddUserWizard = () => {
   });
   const { push, query } = useRouter();
   const [type, setType] = useState(
-    (query.agence && query.agence) || (query.owner && query.owner) || ""
+    (query.agency && query.agency) || (query.owner && query.owner) || ""
   );
   const {
     email,
@@ -91,7 +91,7 @@ const BodyAddUserWizard = () => {
   const nextStep1 = () => {
     setValidate(true);
     if (firstname !== "" && lastname !== "" && phone !== "" && type !== "") {
-      if (type === "agence" && agencename === "") {
+      if (type === "agency" && agencename === "") {
         setStep1(false);
       } else {
         setStep1(true);
@@ -232,7 +232,7 @@ const BodyAddUserWizard = () => {
                               <span>
                                 {type === ""
                                   ? "Agence ou Propriétaire"
-                                  : type === "agence"
+                                  : type === "agency"
                                   ? "Agence"
                                   : "Propriétaire"}
                               </span>{" "}
@@ -241,9 +241,9 @@ const BodyAddUserWizard = () => {
                             <div className="dropdown-menu text-start">
                               <a
                                 className={`dropdown-item ${
-                                  type === "agence" ? "tw-bg-[#e9ecef80]" : ""
+                                  type === "agency" ? "tw-bg-[#e9ecef80]" : ""
                                 }`}
-                                onClick={() => setType("agence")}
+                                onClick={() => setType("agency")}
                               >
                                 Agence
                               </a>
@@ -309,7 +309,7 @@ const BodyAddUserWizard = () => {
                             required
                           />
                         </div>
-                        {type === "agence" && (
+                        {type === "agency" && (
                           <div className="form-group col-md-6">
                             <label>
                               Le Nom de votre agence{" "}

@@ -1,7 +1,7 @@
 import Layout from "components/dashboard/Layout";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import AllAgentScreen from "screens/manageusers/all-agents-screen";
+import AllAgentScreen from "screens/agents/all-agents-screen";
 
 const AllAgent = () => {
   const [open, setOpen] = useState(false);

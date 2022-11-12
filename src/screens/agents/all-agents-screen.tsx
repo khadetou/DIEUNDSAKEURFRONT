@@ -1,4 +1,4 @@
-import BodyAllAgent from "components/dashboard/agents/addagent";
+import BodyAllAgent from "components/dashboard/agents/allagents";
 import Layout from "components/dashboard/pageBody/Layout";
 import { Dispatch, FC } from "react";
 
