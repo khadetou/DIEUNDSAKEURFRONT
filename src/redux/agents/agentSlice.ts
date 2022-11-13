@@ -233,9 +233,9 @@ export const agentSlice = createSlice({
       })
       .addCase(getMyAgent.fulfilled, (state: any, action: any) => {
         state.isLoading = false;
-        state.page = action.payload.page;
-        state.pages = action.payload.pages;
-        state.agents = action.payload.agents;
+        // state.page = action.payload.page;
+        // state.pages = action.payload.pages;
+        state.agents = action.payload;
       })
       .addCase(getMyAgent.rejected, (state: AgentState, action: any) => {
         state.isError = true;

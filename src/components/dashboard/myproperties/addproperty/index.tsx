@@ -3,14 +3,14 @@ import FormInput from "./form-inputs";
 import Media from "./media";
 import Checkbox from "./checkbox";
 import TopBody from "./top-body";
-import { useAppSelector } from "hooks/index";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "hooks/index";
+
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { createProperty, reset } from "redux/property/propertySlice";
 
 const BodyAddProperty = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { isError, isSuccess, message } = useAppSelector(
     (store) => store.property
   );

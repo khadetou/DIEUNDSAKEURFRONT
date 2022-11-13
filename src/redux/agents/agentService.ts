@@ -57,7 +57,7 @@ const getMyAgent = async (
       Authorization: `Bearer ${token}`,
     },
   };
-  const { data } = await axios.get(`${API_URL}/agent/my-properties`, config);
+  const { data } = await axios.get(`${API_URL}/agent/my-agents`, config);
   return data;
 };
 

@@ -1,6 +1,7 @@
 import Layout from "components/dashboard/Layout";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { ToastContainer } from "react-toastify";
 import AddAgentScreen from "screens/agents/add-agent-screen";
 
 const AddAgent = () => {
@@ -13,6 +14,7 @@ const AddAgent = () => {
         isTabletOrMobile={isTabletOrMobile}
         setOpen={setOpen}
       />
+      <ToastContainer />
     </Layout>
   );
 };
