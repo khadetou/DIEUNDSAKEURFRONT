@@ -1,11 +1,36 @@
-import { useAppSelector } from "hooks/index";
+import { useAppDispatch, useAppSelector } from "hooks/index";
 import React, { useState } from "react";
 import TopBody from "./top-body";
-import Image from "next/image";
+import Link from "next/link";
+import { Edit, Info, Trash2 } from "react-feather";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { deleteAgent } from "redux/agents/agentSlice";
+
+const MySwal = withReactContent(Swal);
 
 const BodyAllAgent = () => {
   const { agents } = useAppSelector((store) => store.agent);
   const [show, setShow] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const onDelete = (_id: string) => {
+    MySwal.fire({
+      title: "Etes vous sure ?",
+      text: "De vouloire supprimé",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#218838",
+      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Oui, supprimé!",
+      cancelButtonText: "No, annulé!",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteAgent(_id));
+      }
+    });
+  };
   return (
     <div className="page-body">
       <TopBody />
@@ -23,6 +48,7 @@ const BodyAllAgent = () => {
                         lastname,
                         phone,
                         email,
+                        _id,
                       }: any,
                       idx: any
                     ) => (
@@ -74,7 +100,9 @@ const BodyAllAgent = () => {
                             <h3>
                               <a href="agent-profile.html">{`${firstname} ${lastname}`}</a>
                             </h3>
-                            <p className="font-roboto">Agent Immobilier</p>
+                            <p className="font-roboto tw-mb-4">
+                              Agent Immobilier
+                            </p>
                             <ul className="agent-contact">
                               <li>
                                 <i className="fas fa-phone-alt"></i>
@@ -92,10 +120,20 @@ const BodyAllAgent = () => {
                                 <i className="fas fa-fax"></i> 33 247 054 787
                               </li>
                             </ul>
-                            <a href="agent-profile.html">
-                              View profile{" "}
-                              <i className="fas fa-arrow-right"></i>
-                            </a>
+                            <div className="tw-flex tw-items-center tw-mb-[10px] tw-justify-between tw-max-w-[105px] tw-w-[105px] tw-ml-auto">
+                              <button type="button">
+                                <Info size={20} />
+                              </button>
+                              <Link href={`/dashboard/edit/edit-agent/${_id}`}>
+                                <Edit size={20} />
+                              </Link>
+                              <button
+                                className="hover:tw-text-red-600"
+                                onClick={() => onDelete(_id)}
+                              >
+                                <Trash2 size={20} />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>

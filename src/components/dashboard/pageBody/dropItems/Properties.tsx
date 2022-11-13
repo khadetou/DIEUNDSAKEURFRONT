@@ -78,7 +78,7 @@ const Properties: FC<PropertyProps> = ({ active, setActive }) => {
       </a>
       <SlideDown closed={open}>
         <ul className="nav-submenu menu-content pure-menu-list dropdown-list ">
-          {user && ["admin", "owner", "agence"].includes(user.roles) && (
+          {user && ["admin", "owner", "agency"].includes(user.roles) && (
             <>
               <li>
                 <Link

@@ -7,7 +7,6 @@ const Bottom = () => {
   const { isSuccess, isError, isLoading, properties } = useAppSelector(
     (store) => store.property
   );
-  const dispatch = useAppDispatch();
   return (
     <div className="col-xl-12">
       <div className="property-2 row column-sm property-label property-grid">
