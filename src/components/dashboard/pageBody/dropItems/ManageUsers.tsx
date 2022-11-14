@@ -115,11 +115,11 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
               className={pathname.endsWith("add-user-wizard") ? "active" : ""}
             >
               <ChevronsRight />
-              Devenez un Hote
+              Modifier mon profile
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link
               href="edit-user"
               className={pathname.endsWith("edit-user") ? "active" : ""}
@@ -127,7 +127,7 @@ const ManageUsers: FC<ManageUsersProps> = ({ active, setActive }) => {
               <ChevronsRight />
               Modifier mon profile
             </Link>
-          </li>
+          </li> */}
           {user && user.roles === "admin" && (
             <li>
               <Link

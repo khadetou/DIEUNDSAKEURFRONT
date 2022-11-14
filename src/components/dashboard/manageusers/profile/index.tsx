@@ -1,7 +1,12 @@
+import { useAppSelector } from "hooks/index";
 import React from "react";
 import TopBody from "./top-body";
+import Image from "next/image";
+import { initials } from "utils/index";
 
 const BodyProfile = () => {
+  const { user } = useAppSelector((store) => store.auth);
+  const { properties } = useAppSelector((store) => store.property);
   return (
     <div className="page-body">
       <TopBody />
@@ -13,18 +18,25 @@ const BodyProfile = () => {
                 <div className="card">
                   <div className="card-body">
                     <div className="media contact-media">
-                      <img
-                        src="/images/avatar/7.jpg"
-                        className="img-fluid img-80"
-                        alt=""
-                      />
+                      {user.image.url ? (
+                        <Image
+                          src={user.image.url}
+                          width={user.image.width}
+                          height={user.image.height}
+                          className="img-fluid img-80"
+                          alt=""
+                        />
+                      ) : (
+                        <div className="tw-rounded-md tw-p-4 tw-mr-2 tw-font-bold tw-text-base tw-bg-red-600 tw-text-white tw-cursor-pointer">
+                          {user && initials(user.firstname, user.lastname)}
+                        </div>
+                      )}
                       <div className="media-body">
-                        <h4>Good Evening , Brock Lee</h4>
+                        <h4>
+                          Bonsoire , {`${user.firstname} ${user.lastname}`}
+                        </h4>
                         <span className="light-font">
-                          My current address{" "}
-                          <a href="javascript:void(0)">
-                            Mina Road, Dubai, United Arab Emirates
-                          </a>
+                          Mes réseaux <a>{user.address}</a>
                         </span>
                         <ul className="agent-social mt-2">
                           <li>
@@ -68,7 +80,7 @@ const BodyProfile = () => {
                         }
                         className="btn btn-gradient color-4 btn-pill"
                       >
-                        Email
+                        Message
                       </button>
                       <button
                         type="button"
@@ -77,13 +89,14 @@ const BodyProfile = () => {
                         }
                         className="btn btn-dashed color-4 ms-2 btn-pill"
                       >
-                        Message
+                        Modifier mon profil
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-xl-4 xl-6">
+
+              {/* <div className="col-xl-4 xl-6">
                 <div className="card">
                   <div className="card-body">
                     <div className="partner-info">
@@ -157,8 +170,8 @@ const BodyProfile = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-xl-3 xl-6">
+              </div> */}
+              {/* <div className="col-xl-3 xl-6">
                 <div className="card timeline-card">
                   <div className="card-body">
                     <div className="partner-info">
@@ -194,14 +207,14 @@ const BodyProfile = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="col-xl-3 xl-6 col-lg-12 col-md-5">
                 <div className="about-profile row">
                   <div className="about-info col-xl-12 xl-12 col-lg-6">
                     <div className="card">
                       <div className="card-body">
                         <div className="title-about">
-                          <h5>About</h5>
+                          <h5>A Propos</h5>
                         </div>
                         <div className="table-responsive">
                           <table className="table table-bordernone mb-0">
@@ -209,21 +222,23 @@ const BodyProfile = () => {
                               <tr>
                                 <td className="pt-0">Email:</td>
                                 <td className="light-font pt-0">
-                                  brockle@gmail.com
+                                  {user.email}
                                 </td>
                               </tr>
                               <tr>
-                                <td>Mobile Number:</td>
-                                <td className="light-font">+ 61 1545812570</td>
+                                <td>Numéro Téléphone:</td>
+                                <td className="light-font">{user.phone}</td>
                               </tr>
                               <tr>
-                                <td>Gender:</td>
-                                <td className="light-font">Male</td>
+                                <td>Role:</td>
+                                <td className="light-font tw-capitalize">
+                                  {user.roles}
+                                </td>
                               </tr>
                               <tr>
-                                <td className="pb-0">DOB:</td>
+                                <td className="pb-0">Nom de l'agence</td>
                                 <td className="light-font pb-0">
-                                  Dec, 10 1990
+                                  {user.agencename}
                                 </td>
                               </tr>
                             </tbody>
@@ -331,121 +346,131 @@ const BodyProfile = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-6 xl-6 col-lg-12 col-md-7">
-                <div className="recent-properties">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="title-about">
-                        <h5>Recent properties</h5>
-                      </div>
-                      <div className="table-responsive">
-                        <table className="table table-bordernone mb-0">
-                          <thead>
-                            <tr>
-                              <th>Property</th>
-                              <th>Rate</th>
-                              <th>Deposit</th>
-                              <th>Start date</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <div className="media">
-                                  <img
-                                    src="/images/property/4.jpg"
-                                    className="img-fluid img-80"
-                                    alt=""
-                                  />
-                                  <div className="media-body">
-                                    <h6>Orchard House</h6>
-                                    <span className="light-font">Brazil</span>
+              {properties.length !== 0 && (
+                <div className="col-xl-6 xl-6 col-lg-12 col-md-7">
+                  <div className="recent-properties">
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="title-about">
+                          <h5>{`${
+                            user.roles === "admin" ? "Recent properties" : ""
+                          } `}</h5>
+                        </div>
+                        <div className="table-responsive">
+                          <table className="table table-bordernone mb-0">
+                            <thead>
+                              <tr>
+                                <th>Propriétés</th>
+                                <th>Rate</th>
+                                <th>Deposit</th>
+                                <th>Start date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div className="media">
+                                    <img
+                                      src="/images/property/4.jpg"
+                                      className="img-fluid img-80"
+                                      alt=""
+                                    />
+                                    <div className="media-body">
+                                      <h6>Orchard House</h6>
+                                      <span className="light-font">Brazil</span>
+                                    </div>
                                   </div>
-                                </div>
-                              </td>
-                              <td>
-                                <h6>$5800</h6>
-                                <span className="light-font">monthly rent</span>
-                              </td>
-                              <td>
-                                <h6>$400</h6>
-                                <span className="light-font">deposit</span>
-                              </td>
-                              <td>
-                                <h6>Jan, 18 2022</h6>
-                                <span className="light-font">start date</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div className="media">
-                                  <img
-                                    src="/images/property/2.jpg"
-                                    className="img-fluid img-80"
-                                    alt=""
-                                  />
-                                  <div className="media-body">
-                                    <h6>Neverland</h6>
-                                    <span className="light-font">France</span>
+                                </td>
+                                <td>
+                                  <h6>$5800</h6>
+                                  <span className="light-font">
+                                    monthly rent
+                                  </span>
+                                </td>
+                                <td>
+                                  <h6>$400</h6>
+                                  <span className="light-font">deposit</span>
+                                </td>
+                                <td>
+                                  <h6>Jan, 18 2022</h6>
+                                  <span className="light-font">start date</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div className="media">
+                                    <img
+                                      src="/images/property/2.jpg"
+                                      className="img-fluid img-80"
+                                      alt=""
+                                    />
+                                    <div className="media-body">
+                                      <h6>Neverland</h6>
+                                      <span className="light-font">France</span>
+                                    </div>
                                   </div>
-                                </div>
-                              </td>
-                              <td>
-                                <h6>$8700</h6>
-                                <span className="light-font">monthly rent</span>
-                              </td>
-                              <td>
-                                <h6>$850</h6>
-                                <span className="light-font">deposit</span>
-                              </td>
-                              <td>
-                                <h6>Mar, 25 2022</h6>
-                                <span className="light-font">start date</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="pb-0">
-                                <div className="media">
-                                  <img
-                                    src="/images/property/3.jpg"
-                                    className="img-fluid img-80"
-                                    alt=""
-                                  />
-                                  <div className="media-body">
-                                    <h6>Sea Breezes</h6>
-                                    <span className="light-font">USA</span>
+                                </td>
+                                <td>
+                                  <h6>$8700</h6>
+                                  <span className="light-font">
+                                    monthly rent
+                                  </span>
+                                </td>
+                                <td>
+                                  <h6>$850</h6>
+                                  <span className="light-font">deposit</span>
+                                </td>
+                                <td>
+                                  <h6>Mar, 25 2022</h6>
+                                  <span className="light-font">start date</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="pb-0">
+                                  <div className="media">
+                                    <img
+                                      src="/images/property/3.jpg"
+                                      className="img-fluid img-80"
+                                      alt=""
+                                    />
+                                    <div className="media-body">
+                                      <h6>Sea Breezes</h6>
+                                      <span className="light-font">USA</span>
+                                    </div>
                                   </div>
-                                </div>
-                              </td>
-                              <td className="pb-0">
-                                <h6>$5880</h6>
-                                <span className="light-font">monthly rent</span>
-                              </td>
-                              <td className="pb-0">
-                                <h6>$380</h6>
-                                <span className="light-font">deposit</span>
-                              </td>
-                              <td className="pb-0">
-                                <h6>Jun, 05 2022</h6>
-                                <span className="light-font">start date</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                                <td className="pb-0">
+                                  <h6>$5880</h6>
+                                  <span className="light-font">
+                                    monthly rent
+                                  </span>
+                                </td>
+                                <td className="pb-0">
+                                  <h6>$380</h6>
+                                  <span className="light-font">deposit</span>
+                                </td>
+                                <td className="pb-0">
+                                  <h6>Jun, 05 2022</h6>
+                                  <span className="light-font">start date</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="earning-chart card">
+                  {/* <div className="earning-chart card">
                   <div className="card-body">
                     <div className="title-about">
                       <h5>Recent earnings</h5>
                     </div>
                     <div className="earnings"></div>
                   </div>
+                </div> */}
                 </div>
-              </div>
-              <div className="col-xl-3 xl-6 col-md-12">
+              )}
+              {/* <div className="col-xl-3 xl-6 col-md-12">
                 <div className="row">
                   <div className="buyer-chart col-xl-12 col-md-6">
                     <div className="card">
@@ -535,7 +560,7 @@ const BodyProfile = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
-import React from "react";
+import { useAppSelector } from "hooks/index";
 
 const TopBody = () => {
+  const { user } = useAppSelector((store) => store.auth);
   return (
     <div className="container-fluid">
       <div className="page-header">
@@ -8,8 +9,14 @@ const TopBody = () => {
           <div className="col-sm-6">
             <div className="page-header-left">
               <h3>
-                User profile
-                <small>Welcome to admin panel</small>
+                {user && user.roles === "admin" && "Profil Administrateur"}
+                {user && user.roles === "user" && "Profil Utilisateur"}
+                {user && user.roles === "agency" && `Agence ${user.name}`}
+                {user &&
+                  user.roles === "owner" &&
+                  `Proprièté de ${user.firstname} {user.lastname}`}
+
+                <small>Bienvenue sur le panneau d'administration</small>
               </h3>
             </div>
           </div>
