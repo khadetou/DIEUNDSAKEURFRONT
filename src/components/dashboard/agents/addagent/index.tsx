@@ -93,6 +93,7 @@ const BodyAddUser = () => {
     }
     if (isSuccess) {
       toast.success("L'agent à été ajouté avec succés!");
+      dispatch(reset());
       setTimeout(() => {
         push("/dashboard/all-agents");
       }, 5000);
