@@ -8,8 +8,8 @@ const TopBody = () => {
           <div className="col-sm-6">
             <div className="page-header-left">
               <h3>
-                All users
-                <small>Welcome to admin panel</small>
+                Tous les Utilisateurs
+                <small>Bienvenue dans le panneau d’administrationl</small>
               </h3>
             </div>
           </div>
@@ -20,7 +20,7 @@ const TopBody = () => {
                   <i className="fa fa-home"></i>
                 </a>
               </li>
-              <li className="breadcrumb-item active">Manage users</li>
+              <li className="breadcrumb-item active">Gérer les utilisateurs</li>
             </ol>
           </div>
         </div>

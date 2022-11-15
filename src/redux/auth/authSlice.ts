@@ -11,6 +11,7 @@ const token = typeof window !== "undefined" && JSON.parse(localToken);
 interface UserState {
   token: any;
   user: any;
+  users: any[];
   isError: boolean;
   isSuccess: boolean;
   isAuthenticated: boolean;
@@ -21,6 +22,7 @@ interface UserState {
 const initialState: UserState = {
   token: token ? token : "",
   user: null,
+  users: [],
   isError: false,
   isAuthenticated: false,
   isSuccess: false,
@@ -69,6 +71,25 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk("auth/logout", async () => {
   await authService.logout();
 });
+
+// GET All USER
+export const getAllUsers = createAsyncThunk(
+  "auth/users",
+  async (token: string, thunkAPI: any) => {
+    try {
+      return await authService.getAllUsers(token);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue({ message });
+    }
+  }
+);
 
 // GET USER
 export const getUser = createAsyncThunk(
@@ -184,6 +205,7 @@ export const authSlice = createSlice({
       .addCase(HYDRATE, (state, action) => {
         state.isAuthenticated = action.payload.auth.isAuthenticated;
         state.user = action.payload.auth.user;
+        state.users = action.payload.auth.users;
         state.isError = action.payload.auth.isError;
         state.isLoading = action.payload.auth.isLoading;
         state.isSuccess = action.payload.auth.isSuccess;
@@ -224,6 +246,19 @@ export const authSlice = createSlice({
         state.token = null;
         state.user = null;
         state.isAuthenticated = false;
+      })
+      .addCase(getAllUsers.pending, (state: UserState) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state: UserState, action: any) => {
+        state.users = action.payload;
+        state.isSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(getAllUsers.rejected, (state: UserState, action: any) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       })
       .addCase(getUser.pending, (state: UserState) => {
         state.isLoading = true;

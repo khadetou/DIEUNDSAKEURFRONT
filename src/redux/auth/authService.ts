@@ -12,6 +12,17 @@ const getUser = async (token: string) => {
   return { data, token };
 };
 
+const getAllUsers = async (token: string) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const { data } = await axios.get(`${API_URL}/auth/users`, config);
+
+  return data;
+};
+
 const updateUser = async (token: string, profileData: any) => {
   const config = {
     headers: {
@@ -121,6 +132,7 @@ const authService = {
   logout,
   login,
   getUser,
+  getAllUsers,
   getCookie,
   removeCookie,
   setCookie,

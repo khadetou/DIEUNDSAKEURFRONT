@@ -1,4 +1,4 @@
-import BodyAllUser from "components/dashboard/manageusers/adduser";
+import BodyAllUser from "components/dashboard/manageusers/allusers";
 import Layout from "components/dashboard/pageBody/Layout";
 import { Dispatch, FC } from "react";
 
