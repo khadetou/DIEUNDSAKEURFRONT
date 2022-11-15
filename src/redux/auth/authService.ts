@@ -127,6 +127,17 @@ export const getCookie = (key: string, req: any) => {
     : getCookieFromServer(key, req);
 };
 
+// DELETE USER
+export const deleteUser = async (id: string, token: string) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const { data } = await axios.delete(`${API_URL}/auth/users/${id}`, config);
+  return data;
+};
+
 const authService = {
   register,
   logout,
@@ -140,6 +151,7 @@ const authService = {
   resetPassword,
   updateUser,
   sendMessage,
+  deleteUser,
 };
 
 export default authService;
