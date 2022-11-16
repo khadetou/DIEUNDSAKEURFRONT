@@ -9217,8 +9217,8 @@ input[type="radio"].radio_animated {
 }
 
 .arrow-light .slick-arrow {
-  width: 50px !important;
-  height: 50px !important;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   background-color: rgba(255, 255, 255, 0.1) !important;
 }

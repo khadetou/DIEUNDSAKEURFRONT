@@ -4,7 +4,7 @@ import Signature from "/public/images/signature/2.png";
 import Slider, { Settings } from "react-slick";
 import InputRange from "react-input-range";
 
-const HomeSection = () => {
+const HeroSection = () => {
   const settings: Settings = {
     infinite: true,
     speed: 500,
@@ -12,6 +12,7 @@ const HomeSection = () => {
     slidesToScroll: 1,
   };
   const [value, setValue] = useState({ min: 75, max: 300 });
+  const [value1, setValue1] = useState({ min: 75, max: 300 });
 
   return (
     <section className="home-section layout-1 layout-6">
@@ -266,7 +267,6 @@ const HomeSection = () => {
                                   "10 tw-left-0 tw-mt-[-0.15rem] tw-absolute tw-right-0 tw-top-[50%] tw-rounded-[0.3rem] tw-cursor-pointer tw-block tw-h-[0.3rem] tw-tras tw-bg-white tw-transition-[left,_width] tw-duration-300 tw-ease-out",
                               }}
                             />
-                            {/* slider range */}
                           </div>
                         </div>
                       </div>
@@ -274,11 +274,29 @@ const HomeSection = () => {
                         <div className="form-group">
                           <div className="price-range">
                             <label htmlFor="amount">Area : </label>
-                            <input type="text" id="amount1" readOnly />
-                            <div
-                              id="slider-range1"
-                              className="theme-range-3"
-                            ></div>
+                            <span className="tw-bg-transparent tw-text-white tw-max-w-[95px] tw-py-[1px] tw-px-[2px] tw-ml-1 tw-font-sans">{`${value1.min} m² - ${value1.max} m²`}</span>
+                            <InputRange
+                              minValue={0}
+                              maxValue={500}
+                              value={value1}
+                              onChange={(value: any) => setValue1(value)}
+                              classNames={{
+                                valueLabel: "1 tw-hidden",
+                                activeTrack:
+                                  "2 tw-bg-[#d70000] tw-left-0 tw-mt-[-0.15rem] tw-absolute tw-right-0 tw-top-[50%] tw-rounded-[0.3rem] tw-cursor-pointer tw-block tw-h-[0.3rem] tw-tras tw-transition-[left,_width] tw-duration-300 tw-ease-out",
+                                disabledInputRange: "3",
+                                inputRange: "4 tw-h-4 tw-relative tw-w-full",
+                                labelContainer: "5 tw-hidden",
+                                maxLabel: "6 tw-hidden",
+                                minLabel: "7 tw-hidden",
+                                slider:
+                                  "8 tw-appearance-none tw-bg-[#d70000] tw-border tw-border-[#d70000] tw-rounded-full tw-cursor-pointer tw-block tw-h-4 -tw-ml-[0.5rem] -tw-mt-[0.38rem] tw-outline-none tw-absolute tw-top-1/2 tw-transition-[transform,_box-shadow] tw-duration-300 tw-ease-out tw-w-4 active:tw-scale-[1.3]",
+                                sliderContainer:
+                                  "9 tw-transition-[left] tw-duration-300 tw-ease-out ",
+                                track:
+                                  "10 tw-left-0 tw-mt-[-0.15rem] tw-absolute tw-right-0 tw-top-[50%] tw-rounded-[0.3rem] tw-cursor-pointer tw-block tw-h-[0.3rem] tw-tras tw-bg-white tw-transition-[left,_width] tw-duration-300 tw-ease-out",
+                              }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -307,4 +325,4 @@ const HomeSection = () => {
   );
 };
 
-export default HomeSection;
+export default HeroSection;
