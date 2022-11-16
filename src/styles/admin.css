@@ -20876,10 +20876,11 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   --theme-default9: #4b55c4;
   --theme-gradient10: linear-gradient(
     to right,
-    var(--theme-default8) 0%,
-    var(--theme-default9) 51%,
-    var(--theme-default8) 100%
+    #7e0000 0%,
+    #d70000 51%,
+    #7e0000 100%
   );
+  /* ---theme-gradient: linear-gradient(90deg, #7E0000 0%, #D70000 100%); */
   --theme-gradient11: linear-gradient(
     to right,
     var(--theme-default8) 0%,
@@ -22698,8 +22699,8 @@ label {
 }
 .btn.btn-gradient.color-6::after {
   opacity: 0.3;
-  -webkit-box-shadow: -5.15px 8.572px 25px var(--theme-default8);
-  box-shadow: -5.15px 8.572px 25px var(--theme-default8);
+  -webkit-box-shadow: -5.15px 8.572px 25px #7e0000;
+  box-shadow: -5.15px 8.572px 25px #7e0000;
 }
 .btn.btn-gradient.color-6:hover {
   background-position: right center;

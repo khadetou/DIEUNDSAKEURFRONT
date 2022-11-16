@@ -1,6 +1,8 @@
 import React from "react";
 import HeaderRight from "./header-right";
 import NavBar from "./nav";
+import DSK from "/public/images/logo/dsksvg.svg";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -11,7 +13,11 @@ const Header = () => {
             <div className="menu">
               <div className="brand-logo">
                 <a href="https://themes.pixelstrap.com/sheltos/index.html">
-                  <img src="/images/logo/6.png" alt="" className="img-fluid" />
+                  <Image
+                    src={DSK}
+                    alt=""
+                    className="img-fluid after:tw-opacity-[0.3] after:tw-shadow-[-5.15px_8.572px_25px] after:tw-shadow-[#7e0000]"
+                  />
                 </a>
               </div>
               <NavBar />

@@ -1,16 +1,15 @@
 import { wrapper } from "../redux";
-import HomeSection from "components/Home/Homesection";
 import Layout from "components/Layout";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
 import { getCookie } from "redux/auth/authService";
 import { logout, getUser } from "redux/auth/authSlice";
+import HomeScreen from "screens/home";
 
 export default function Home() {
   return (
     <Layout>
-      <HomeSection />
-      <h1>Hello world!</h1>
+      <HomeScreen />
     </Layout>
   );
 }

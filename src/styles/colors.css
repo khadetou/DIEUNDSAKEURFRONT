@@ -95,13 +95,13 @@ Author URI: https://themeforest.net/user/pixelstrap
     var(--theme-default6) 0%,
     var(--theme-default7) 100%
   );
-  --theme-default8: #2c2e97;
-  --theme-default9: #4b55c4;
+  --theme-default8: #7e0000;
+  --theme-default9: #d70000;
   --theme-gradient10: linear-gradient(
     to right,
-    var(--theme-default8) 0%,
-    var(--theme-default9) 51%,
-    var(--theme-default8) 100%
+    #7e0000 0%,
+    #d70000 51%,
+    #7e0000 100%
   );
   --theme-gradient11: linear-gradient(
     to right,
@@ -2132,8 +2132,8 @@ label {
 }
 .btn.btn-gradient.color-6::after {
   opacity: 0.3;
-  -webkit-box-shadow: -5.15px 8.572px 25px var(--theme-default8);
-  box-shadow: -5.15px 8.572px 25px var(--theme-default8);
+  -webkit-box-shadow: -5.15px 8.572px 25px #7e0000;
+  box-shadow: -5.15px 8.572px 25px #7e0000;
 }
 .btn.btn-gradient.color-6:hover {
   background-position: right center;
@@ -9217,10 +9217,10 @@ input[type="radio"].radio_animated {
 }
 
 .arrow-light .slick-arrow {
-  width: 50px;
-  height: 50px;
+  width: 50px !important;
+  height: 50px !important;
   border-radius: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .arrow-light .slick-prev:before,
