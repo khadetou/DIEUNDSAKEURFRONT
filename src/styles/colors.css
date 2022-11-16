@@ -5752,7 +5752,7 @@ input[type="radio"].radio_animated {
   .property-details
   .round-half:hover
   svg {
-  fill: #9516d7;
+  fill: #d70000;
 }
 .feature-section
   .feature-1
@@ -5760,7 +5760,7 @@ input[type="radio"].radio_animated {
   .property-details
   .round-half.color-6
   svg {
-  stroke: #2c2e97;
+  stroke: #d70000;
 }
 .feature-section
   .feature-1
@@ -5768,7 +5768,7 @@ input[type="radio"].radio_animated {
   .property-details
   .round-half.color-6:hover
   svg {
-  fill: #2c2e97;
+  fill: #d70000;
 }
 .feature-section .feature-1 .feature-wrapper .feature-image {
   text-align: right;
