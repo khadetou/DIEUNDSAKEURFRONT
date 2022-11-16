@@ -4,14 +4,10 @@ const VendredropDown = () => {
   return (
     <ul className="nav-submenu menu-content">
       <li>
-        <a href="javascript:void(0)" className="menu-title-level1">
-          Grid view
-        </a>
+        <a className="menu-title-level1">Grid view</a>
         <ul className="nav-sub-childmenu level1">
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              2 Grid
-            </a>
+            <a className="submenu-title">2 Grid</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="grid-2.html">Left Sidebar</a>
@@ -25,9 +21,7 @@ const VendredropDown = () => {
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              3 Grid
-            </a>
+            <a className="submenu-title">3 Grid</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="grid-left-sidebar.html">Left Sidebar</a>
@@ -44,9 +38,7 @@ const VendredropDown = () => {
             <a href="grid-slider.html">Slider</a>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              map
-            </a>
+            <a className="submenu-title">map</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="google-map.html">google map</a>
@@ -63,9 +55,7 @@ const VendredropDown = () => {
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              map modal
-            </a>
+            <a className="submenu-title">map modal</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="google-map-modal.html">google map</a>
@@ -82,9 +72,7 @@ const VendredropDown = () => {
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              Left side map
-            </a>
+            <a className="submenu-title">Left side map</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="google-leftmap.html">google map</a>
@@ -101,9 +89,7 @@ const VendredropDown = () => {
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              onclick map
-            </a>
+            <a className="submenu-title">onclick map</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="google-clickmap.html">google map</a>
@@ -120,9 +106,7 @@ const VendredropDown = () => {
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              map header
-            </a>
+            <a className="submenu-title">map header</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="google-header.html">google map</a>
@@ -141,14 +125,10 @@ const VendredropDown = () => {
         </ul>
       </li>
       <li>
-        <a href="javascript:void(0)" className="menu-title-level1">
-          List view
-        </a>
+        <a className="menu-title-level1">List view</a>
         <ul className="nav-sub-childmenu level1">
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              Listing
-            </a>
+            <a className="submenu-title">Listing</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="list-left-sidebar.html">Left Sidebar</a>
@@ -162,9 +142,7 @@ const VendredropDown = () => {
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0)" className="submenu-title">
-              Map
-            </a>
+            <a className="submenu-title">Map</a>
             <ul className="nav-sub-childmenu submenu-content level2">
               <li>
                 <a href="google-list-map.html">google map</a>
@@ -192,9 +170,7 @@ const VendredropDown = () => {
         </ul>
       </li>
       <li>
-        <a href="javascript:void(0)" className="menu-title-level1">
-          Tab layout
-        </a>
+        <a className="menu-title-level1">Tab layout</a>
         <ul className="nav-sub-childmenu level1">
           <li>
             <a href="tab-layout.html">Tab full width</a>
