@@ -6,6 +6,8 @@ import ForRent from "components/Home/forrent";
 import NewOffer from "components/Home/Newoffer";
 import Gallery from "components/Home/gallery";
 import Banner from "components/Home/Banner";
+import About from "components/Home/About";
+
 const HomeScreen = () => {
   return (
     <>
@@ -16,6 +18,7 @@ const HomeScreen = () => {
       <NewOffer />
       <Gallery />
       <Banner />
+      <About />
     </>
   );
 };
