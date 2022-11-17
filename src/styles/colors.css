@@ -63,8 +63,8 @@ Author URI: https://themeforest.net/user/pixelstrap
     var(--theme-default) 25%,
     var(--theme-default2) 100%
   );
-  --theme-default3: #ff5c41;
-  --theme-default4: #ff8c41;
+  --theme-default3: #7e0000;
+  --theme-default4: #d70000;
   --theme-gradient5: linear-gradient(
     to right,
     var(--theme-default3) 0%,
@@ -8375,7 +8375,7 @@ input[type="radio"].radio_animated {
   margin: 0 5px;
   opacity: 0.5;
 }
-.gallery-nav .slick-slide{
+.gallery-nav .slick-slide {
   opacity: 0.5;
 }
 
