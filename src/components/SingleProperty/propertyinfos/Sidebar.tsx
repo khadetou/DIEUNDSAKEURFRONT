@@ -323,7 +323,9 @@ const Sidebar = () => {
             </div>
           </div>
           <div className="advance-card feature-card">
-            <h6>Featured</h6>
+            <h6 className="!tw-mb-[30px] !tw-font-semibold !tw-text-base">
+              Featured
+            </h6>
             <Slick {...settings} className="feature-slider">
               <div className="bg-size tw-bg-cover tw-bg-[center_center] tw-bg-no-repeat tw-inline-block tw-w-full">
                 <img
