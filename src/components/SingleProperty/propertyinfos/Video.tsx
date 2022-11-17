@@ -7,14 +7,10 @@ const Video = () => {
         <h4 className="content-title">video</h4>
         <div className="play-bg-image">
           <div className="bg-size">
-            <img src="/images/property/11.jpg" className="bg-img" alt="" />
+            {/* <img src="/images/property/11.jpg" className="bg-img" alt="" /> */}
           </div>
           <div className="icon-video">
-            <a
-              href="javascript:void(0)"
-              data-bs-toggle="modal"
-              data-bs-target="#videomodal"
-            >
+            <a data-bs-toggle="modal" data-bs-target="#videomodal">
               <i className="fas fa-play"></i>
             </a>
           </div>
