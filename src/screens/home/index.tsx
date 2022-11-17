@@ -10,11 +10,13 @@ import About from "components/Home/About";
 import Testimonial from "components/Home/testimonial";
 import Brands from "components/Home/brands";
 import SEO from "components/SEO";
+import Header from "components/Header";
 
 const HomeScreen = () => {
   return (
     <>
       <SEO />
+      <Header />
       <Hero />
       <PropertySection />
       <FeatureSection />

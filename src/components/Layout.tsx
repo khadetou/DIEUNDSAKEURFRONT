@@ -9,7 +9,6 @@ interface LayoutProp {
 const Layout: FC<LayoutProp> = ({ children }) => {
   return (
     <>
-      <Header />
       <main>{children}</main>
       <Footer />
     </>

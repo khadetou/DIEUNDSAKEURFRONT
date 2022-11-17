@@ -6,6 +6,7 @@ import AgendropDown from "../dropdown/agentdropdown";
 import BlogdropDown from "../dropdown/blogdropdown";
 import ContactdropDown from "../dropdown/contactdropdown";
 import { Dispatch, FC, SetStateAction } from "react";
+import Link from "next/link";
 
 interface NavbarProps {
   open: boolean;
@@ -34,7 +35,9 @@ const NavBar: FC<NavbarProps> = ({ open, setOpen }) => {
               </div>
             </li>
             <li className="dropdown">
-              <a className="nav-link menu-title">Acheter</a>
+              <Link href="/property/1" className="nav-link menu-title">
+                Acheter
+              </Link>
               <AcheterdropDown />
             </li>
             <li className="dropdown">
