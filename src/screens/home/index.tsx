@@ -8,6 +8,7 @@ import Gallery from "components/Home/gallery";
 import Banner from "components/Home/Banner";
 import About from "components/Home/About";
 import Testimonial from "components/Home/testimonial";
+import Brands from "components/Home/brands";
 
 const HomeScreen = () => {
   return (
@@ -21,6 +22,7 @@ const HomeScreen = () => {
       <Banner />
       <About />
       <Testimonial />
+      <Brands />
     </>
   );
 };
