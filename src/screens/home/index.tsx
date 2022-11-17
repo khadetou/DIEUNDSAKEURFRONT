@@ -7,6 +7,7 @@ import NewOffer from "components/Home/Newoffer";
 import Gallery from "components/Home/gallery";
 import Banner from "components/Home/Banner";
 import About from "components/Home/About";
+import Testimonial from "components/Home/testimonial";
 
 const HomeScreen = () => {
   return (
@@ -19,6 +20,7 @@ const HomeScreen = () => {
       <Gallery />
       <Banner />
       <About />
+      <Testimonial />
     </>
   );
 };
