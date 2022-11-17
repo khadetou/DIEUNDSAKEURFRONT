@@ -9,10 +9,12 @@ import Banner from "components/Home/Banner";
 import About from "components/Home/About";
 import Testimonial from "components/Home/testimonial";
 import Brands from "components/Home/brands";
+import SEO from "components/SEO";
 
 const HomeScreen = () => {
   return (
     <>
+      <SEO />
       <Hero />
       <PropertySection />
       <FeatureSection />

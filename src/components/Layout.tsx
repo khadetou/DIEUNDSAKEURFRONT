@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from "react";
+import Footer from "./footer";
 import Header from "./Header";
 
 interface LayoutProp {
@@ -10,6 +11,7 @@ const Layout: FC<LayoutProp> = ({ children }) => {
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 };
