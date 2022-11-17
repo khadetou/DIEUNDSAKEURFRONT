@@ -1,6 +1,24 @@
-import React from "react";
+import { useEffect } from "react";
+import Slick, { Settings } from "react-slick";
 
 const Sidebar = () => {
+  const settings: Settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    draggable: true,
+    slidesToScroll: 1,
+  };
+
+  useEffect(() => {
+    document.querySelectorAll(".bg-img").forEach((img) => {
+      const src = img.getAttribute("src");
+      const parent = img.parentElement;
+      parent?.setAttribute("style", `background-image: url(${src})`);
+    });
+  }, []);
+
   return (
     <div className="col-xl-3 col-lg-4">
       <div className="left-sidebar sticky-cls single-sidebar">
@@ -306,9 +324,13 @@ const Sidebar = () => {
           </div>
           <div className="advance-card feature-card">
             <h6>Featured</h6>
-            <div className="feature-slider">
-              <div>
-                <img src="/images/property/4.jpg" className="bg-img" alt="" />
+            <Slick {...settings} className="feature-slider">
+              <div className="bg-size tw-bg-cover tw-bg-[center_center] tw-bg-no-repeat tw-inline-block tw-w-full">
+                <img
+                  src="/images/property/4.jpg"
+                  className="bg-img !tw-hidden"
+                  alt=""
+                />
                 <div className="bottom-feature">
                   <h5>Neverland</h5>
                   <h6>
@@ -316,8 +338,12 @@ const Sidebar = () => {
                   </h6>
                 </div>
               </div>
-              <div>
-                <img src="/images/property/16.jpg" className="bg-img" alt="" />
+              <div className="bg-size tw-bg-cover tw-bg-[center_center] tw-bg-no-repeat tw-inline-block tw-w-full">
+                <img
+                  src="/images/property/16.jpg"
+                  className="bg-img !tw-hidden"
+                  alt=""
+                />
                 <div className="bottom-feature">
                   <h5>Neverland</h5>
                   <h6>
@@ -325,8 +351,12 @@ const Sidebar = () => {
                   </h6>
                 </div>
               </div>
-              <div>
-                <img src="/images/property/14.jpg" className="bg-img" alt="" />
+              <div className="bg-size tw-bg-cover tw-bg-[center_center] tw-bg-no-repeat tw-inline-block tw-w-full">
+                <img
+                  src="/images/property/14.jpg"
+                  className="bg-img !tw-hidden"
+                  alt=""
+                />
                 <div className="bottom-feature">
                   <h5>Neverland</h5>
                   <h6>
@@ -334,7 +364,7 @@ const Sidebar = () => {
                   </h6>
                 </div>
               </div>
-            </div>
+            </Slick>
             <div className="labels-left">
               <span className="label label-success">featured</span>
             </div>
