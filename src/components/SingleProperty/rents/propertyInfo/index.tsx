@@ -1,11 +1,15 @@
 import Gallery from "./Gallery";
 import DatePicker from "react-datepicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import moment from "moment";
+import { useMediaQuery } from "react-responsive";
 
 const PropertyInfoRent = () => {
-  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
-  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
+  const [checkInDate, setCheckInDate] = useState<Date | null>(new Date());
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(new Date());
   const [daysOfStay, setDaysOfStay] = useState(0);
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const [isNotLaptop, setIsNotLaptop] = useState(false);
   const excludeDates = [];
   const onChange = (dates: [Date | null, Date | null]) => {
     const [checkInDate, checkOutDate] = dates;
@@ -20,6 +24,9 @@ const PropertyInfoRent = () => {
       console.log(days);
     }
   };
+  useEffect(() => {
+    setIsNotLaptop(isTabletOrMobile);
+  }, [isTabletOrMobile]);
   return (
     <section className="single-property mt-0 pt-0">
       <div className="container">
@@ -276,17 +283,25 @@ const PropertyInfoRent = () => {
                   </div>
                 </div>
                 <div className="desc-box">
-                  <DatePicker
-                    className="!tw-w-full !tw-h-[auto]"
-                    onChange={onChange}
-                    selected={checkInDate}
-                    endDate={checkOutDate}
-                    startDate={checkInDate}
-                    minDate={new Date()}
-                    selectsRange
-                    monthsShown={2}
-                    inline
-                  />
+                  <div className="page-section">
+                    <h4 className="content-title  xl:!tw-ml-[158px] !tw-text-xl">
+                      {daysOfStay} nuits à nGapparou
+                    </h4>
+                    <p className=" xl:!tw-ml-[158px] !tw-text-sm !tw-font-light">{`${moment(
+                      checkInDate
+                    ).format("ll")} - ${moment(checkOutDate).format("ll")}`}</p>
+                    <DatePicker
+                      className="!tw-w-full !tw-h-[auto]"
+                      onChange={onChange}
+                      selected={checkInDate}
+                      endDate={checkOutDate}
+                      startDate={checkInDate}
+                      minDate={new Date()}
+                      selectsRange
+                      monthsShown={isNotLaptop ? 1 : 2}
+                      inline
+                    />
+                  </div>
                 </div>
                 <div className="desc-box">
                   <div className="page-section">

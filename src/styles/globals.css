@@ -31,7 +31,7 @@ input.input-number-arrow::-webkit-inner-spin-button {
 }
 
 .react-datepicker__month-container {
-  @apply !tw-w-[35%];
+  @apply !tw-w-full xl:!tw-w-[35%];
 }
 
 .react-datepicker__day-names {
@@ -44,10 +44,11 @@ input.input-number-arrow::-webkit-inner-spin-button {
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  @apply !tw-w-[42px] !tw-h-[42px] !tw-flex !tw-items-center !tw-justify-center !tw-font-roboto;
+  @apply !tw-w-6  !tw-h-6 sm:!tw-w-[42px] sm:!tw-h-[42px] !tw-flex !tw-items-center !tw-justify-center !tw-font-roboto;
 }
 
 .react-datepicker__day--keyboard-selected,
+.react-datepicker__day--selected,
 .react-datepicker__month-text--keyboard-selected,
 .react-datepicker__quarter-text--keyboard-selected,
 .react-datepicker__year-text--keyboard-selected,
@@ -74,6 +75,16 @@ input.input-number-arrow::-webkit-inner-spin-button {
   @apply !tw-rounded-full !tw-bg-secondary !tw-bg-opacity-30;
 }
 
+.react-datepicker__navigation--previous {
+  @apply xl:!tw-translate-y-1/2 !tw-top-[30px] xl:!tw-top-[14px] xl:!tw-left-[15%];
+}
+.react-datepicker__navigation--next {
+  @apply xl:!tw-translate-y-1/2 !tw-top-[30px] xl:!tw-top-[14px] xl:!tw-right-[15%];
+}
+
+.react-datepicker__navigation-icon::before {
+  @apply !tw-border-dark;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
