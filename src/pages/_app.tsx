@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-input-range/lib/css/index.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";

@@ -1,6 +1,25 @@
 import Gallery from "./Gallery";
+import DatePicker from "react-datepicker";
+import { useState } from "react";
 
 const PropertyInfoRent = () => {
+  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
+  const [daysOfStay, setDaysOfStay] = useState(0);
+  const excludeDates = [];
+  const onChange = (dates: [Date | null, Date | null]) => {
+    const [checkInDate, checkOutDate] = dates;
+    console.log(checkInDate);
+    setCheckInDate(checkInDate);
+    setCheckOutDate(checkOutDate);
+    if (checkInDate && checkOutDate) {
+      const date1: any = new Date(checkOutDate);
+      const date2: any = new Date(checkInDate);
+      const days = Math.floor((date1 - date2) / 86400000 + 1);
+      setDaysOfStay(days);
+      console.log(days);
+    }
+  };
   return (
     <section className="single-property mt-0 pt-0">
       <div className="container">
@@ -255,6 +274,19 @@ const PropertyInfoRent = () => {
                       ></iframe>
                     </div>
                   </div>
+                </div>
+                <div className="desc-box">
+                  <DatePicker
+                    className="!tw-w-full !tw-h-[auto]"
+                    onChange={onChange}
+                    selected={checkInDate}
+                    endDate={checkOutDate}
+                    startDate={checkInDate}
+                    minDate={new Date()}
+                    selectsRange
+                    monthsShown={2}
+                    inline
+                  />
                 </div>
                 <div className="desc-box">
                   <div className="page-section">

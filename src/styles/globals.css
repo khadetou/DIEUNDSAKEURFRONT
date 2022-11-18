@@ -21,6 +21,59 @@ input.input-number-arrow::-webkit-inner-spin-button {
   margin: 0;
 }
 
+/* REACT DATEPICKER */
+.react-datepicker {
+  @apply !tw-border-none !tw-flex !tw-justify-center !tw-font-roboto;
+}
+
+.react-datepicker__header {
+  @apply !tw-bg-transparent !tw-border-none tw-mt-6;
+}
+
+.react-datepicker__month-container {
+  @apply !tw-w-[35%];
+}
+
+.react-datepicker__day-names {
+  @apply tw-flex tw-justify-around;
+}
+.react-datepicker__week {
+  @apply !tw-flex !tw-justify-around;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  @apply !tw-w-[42px] !tw-h-[42px] !tw-flex !tw-items-center !tw-justify-center !tw-font-roboto;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected,
+.react-datepicker__day--selected.react-datepicker__day--in-range,
+.react-datepicker__day--keyboard-selected.react-datepicker__day--in-range {
+  @apply !tw-rounded-full !tw-bg-primary;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__month-text:hover,
+.react-datepicker__quarter-text:hover,
+.react-datepicker__year-text:hover {
+  @apply !tw-rounded-full !tw-bg-transparent tw-border tw-border-secondary;
+}
+
+.react-datepicker__day-name {
+  @apply tw-font-bold !tw-text-gray-900;
+}
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
+.react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
+.react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
+.react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+  @apply !tw-rounded-full !tw-bg-secondary !tw-bg-opacity-30;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

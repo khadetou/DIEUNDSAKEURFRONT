@@ -14,6 +14,11 @@ module.exports = {
         lightgreen: "rgba(137, 200, 38, 0.1)",
         lightblue: "rgba(2, 94, 222, 0.1)",
         dark: "#1C2D3A",
+        primary: "#7e0000",
+        secondary: "#d70000",
+      },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
       },
     },
   },
