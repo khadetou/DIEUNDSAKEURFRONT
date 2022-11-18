@@ -9,9 +9,10 @@ import Logo from "/public/images/logo/2.png";
 
 interface HeaderProps {
   className?: boolean;
+  light?: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ className }) => {
+const Header: FC<HeaderProps> = ({ className, light }) => {
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery({
     query: "(max-width: 1199px)",
@@ -21,7 +22,11 @@ const Header: FC<HeaderProps> = ({ className }) => {
     setMobile(isMobile);
   }, [isMobile]);
   return (
-    <header className={`${className ? "inner-page" : "header-1 header-6"}`}>
+    <header
+      className={`${className ? "inner-page" : "header-1 header-6"} ${
+        light ? "light-header shadow-cls" : ""
+      }`}
+    >
       <div className="container">
         <div className="row">
           <div className="col">
@@ -55,4 +60,5 @@ export default Header;
 
 Header.defaultProps = {
   className: false,
+  light: false,
 };
