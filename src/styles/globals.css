@@ -26,6 +26,14 @@ input.input-number-arrow::-webkit-inner-spin-button {
   @apply !tw-border-none !tw-flex !tw-justify-center !tw-font-roboto;
 }
 
+.date-picker .react-datepicker {
+  @apply !tw-shadow-[0px_6px_20px_rgba(0,0,0,0.2)] !tw-rounded-2xl !tw-p-4;
+}
+
+.date-picker .react-datepicker__month-container {
+  @apply !tw-w-full;
+}
+
 .react-datepicker__header {
   @apply !tw-bg-transparent !tw-border-none tw-mt-6;
 }
