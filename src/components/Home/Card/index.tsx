@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import Slick, { Settings } from "react-slick";
 import { Shuffle, Camera, Heart } from "react-feather";
+import Image from "next/image";
+import moment from "moment";
 
-const Card = () => {
+const Card = (props: any) => {
   const settings: Settings = {
     dots: true,
     infinite: true,
@@ -19,47 +21,38 @@ const Card = () => {
       parent?.setAttribute("style", `background-image: url(${src})`);
     });
   }, []);
+
+  const {
+    images,
+    region,
+    name,
+    price,
+    description,
+    beds,
+    baths,
+    area,
+    createdAt,
+  } = props;
+
   return (
     <div className="col-xl-4 col-md-6 wow fadeInUp">
       <div className="property-box">
         <div className="property-image">
           <Slick {...settings} className="property-slider color-6">
-            <a
-              className={`bg-size tw-relative !tw-bg-cover !tw-bg-center !tw-bg-no-repeat !tw-block`}
-            >
-              <img
-                src="/images/property/25.jpg"
-                className="bg-img !tw-hidden"
-                alt=""
-              />
-            </a>
-            <a
-              className={`bg-size tw-relative !tw-bg-cover !tw-bg-center !tw-bg-no-repeat !tw-block`}
-            >
-              <img
-                src="/images/property/24.jpg"
-                className="bg-img !tw-hidden"
-                alt=""
-              />
-            </a>
-            <a
-              className={`bg-size tw-relative !tw-bg-cover !tw-bg-center !tw-bg-no-repeat !tw-block`}
-            >
-              <img
-                src="/images/property/22.jpg"
-                className="bg-img !tw-hidden"
-                alt=""
-              />
-            </a>
-            <a
-              className={`bg-size tw-relative !tw-bg-cover !tw-bg-center !tw-bg-no-repeat !tw-block`}
-            >
-              <img
-                src="/images/property/16.jpg"
-                className="bg-img !tw-hidden"
-                alt=""
-              />
-            </a>
+            {images.map((image: any, idx: any) => (
+              <a
+                className={`bg-size tw-relative !tw-bg-cover !tw-bg-center !tw-bg-no-repeat !tw-block`}
+                key={idx}
+              >
+                <Image
+                  src={image.url}
+                  className="bg-img !tw-hidden"
+                  width={image.width}
+                  height={image.height}
+                  alt=""
+                />
+              </a>
+            ))}
           </Slick>
           <div className="labels-left">
             <div>
@@ -69,7 +62,7 @@ const Card = () => {
           </div>
           <div className="seen-data">
             <Camera className="tw-inline" />
-            <span>42</span>
+            <span>{images.length}</span>
           </div>
           <div className="overlay-property-box">
             <a
@@ -93,12 +86,21 @@ const Card = () => {
           </div>
         </div>
         <div className="property-details">
-          <span className="font-roboto">brazil</span>
+          <span className="font-roboto">{region}</span>
           <a href="single-property-8.html">
-            <h3>Hidden Spring Hideway</h3>
+            <h3 className="!tw-font-bold !tw-mb-[10px] !tw-text-[calc(18px+(22_-_18)*((100vw-320px)/(1920-320)))] !tw-leading-[1.2] !tw-tracking-[0.03em]">
+              {name}
+            </h3>
           </a>
-          <h6 className="color-6">$9554.00*</h6>
+          <h6 className="color-6">
+            {Number(price).toLocaleString("fr-FR", {
+              style: "currency",
+              currency: "XOF",
+            })}
+            *
+          </h6>
           <p className="font-roboto">
+            {description}
             An interior designer is someone who
             plans,researches,coordinates,management and manages such enhancement
             projects.
@@ -110,7 +112,7 @@ const Card = () => {
                 className="img-fluid"
                 alt=""
               />
-              Bed : 4
+              Lits :{beds}
             </li>
             <li>
               <img
@@ -118,7 +120,7 @@ const Card = () => {
                 className="img-fluid"
                 alt=""
               />
-              Baths : 4
+              Toillettes : {baths}
             </li>
             <li>
               <img
@@ -126,11 +128,11 @@ const Card = () => {
                 className="img-fluid ruler-tool"
                 alt=""
               />
-              Sq Ft : 5000
+              M² : {area}
             </li>
           </ul>
           <div className="property-btn d-flex">
-            <span>July 18, 2022</span>
+            <span>{moment(createdAt).format("LL")}</span>
             <button
               type="button"
               onClick={() => console.log("first")}
