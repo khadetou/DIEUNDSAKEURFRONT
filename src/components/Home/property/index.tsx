@@ -1,209 +1,109 @@
+import { useAppSelector } from "hooks/index";
+import moment from "moment";
+
 const PropertySection = () => {
+  const { properties } = useAppSelector((store) => store.property);
+  const proper: any[] = properties.filter(
+    (property: any) => property.status === "SELL"
+  );
+
+  const sortedDate = proper.sort((a: any, b: any) => {
+    const dateB: any = new Date(b.createdAt);
+    const dateA: any = new Date(a.createdAt);
+
+    return dateB - dateA;
+  });
+
+  const Lastel = sortedDate.slice(0, 3);
   return (
     <section className="property-section slick-between slick-shadow property-color-6">
       <div className="container">
         <div className="row ratio_landscape">
           <div className="col">
             <div className="title-1 color-6">
-              <span className="label label-gradient color-6">Sale</span>
-              <h2>Latest For Sale</h2>
+              <span className="label label-gradient color-6">A Vendre</span>
+              <h2 className="!tw-mb-[-9px] !tw-pt-[15px]  !tw-text-[30px] !tw-font-bold !tw-tracking-[0.001em] !tw-capitalize">
+                Dernières En Date à Vendre
+              </h2>
               <hr />
             </div>
             <div className="listing-hover-property row">
-              <div className="col-xl-4 col-md-6 wow fadeInUp">
-                <div className="property-box">
-                  <div className="property-image">
-                    <a
-                      //   style={{
-                      //     backgroundImage: `url(${Img1})`,
-                      //   }}
-                      className="tw-bg-cover tw-bg-[center_center] tw-block tw-bg-[url(/images/1.jpg)] tw-bg-no-repeat bg-size"
-                    >
-                      <div className="labels-left">
-                        <span className="label label-shadow">Sale</span>
-                      </div>
-                    </a>
-                    <div className="bottom-property">
-                      <div className="d-flex">
-                        <div>
-                          <h5>
-                            <a href="single-property-6.html">Neverland</a>
-                          </h5>
-                          <h6>
-                            $13,000 <small>/ start from</small>
-                          </h6>
+              {Lastel.map((property, idx) => (
+                <div className="col-xl-4 col-md-6 wow fadeInUp" key={idx}>
+                  <div className="property-box">
+                    <div className="property-image">
+                      <a
+                        style={{
+                          backgroundImage: `url(${property.images[0].url})`,
+                        }}
+                        className="tw-bg-cover tw-bg-[center_center] tw-block  tw-bg-no-repeat bg-size"
+                      >
+                        <div className="labels-left">
+                          <span className="label label-shadow">
+                            {property.status === "SELL"
+                              ? "A Vendre"
+                              : "A Louer"}
+                          </span>
                         </div>
-                        <button
-                          type="button"
-                          className="btn btn-gradient color-6 mt-3"
-                          onClick={() =>
-                            console.log(
-                              "document.location='single-property-8.html'"
-                            )
-                          }
-                        >
-                          Details
-                        </button>
-                      </div>
-                      <div className="overlay-option">
-                        <ul>
-                          <li>
-                            <span>Beds</span>
-                            <h6>2</h6>
-                          </li>
-                          <li>
-                            <span>Baths</span>
-                            <h6>1</h6>
-                          </li>
-                          <li>
-                            <span>Balcony</span>
-                            <h6>1</h6>
-                          </li>
-                          <li>
-                            <span>Area</span>
+                      </a>
+                      <div className="bottom-property">
+                        <div className="d-flex">
+                          <div>
+                            <h5 className="!tw-font-semibold !tw-text-[20px] !tw-tracking-[0.03em] !tw-leading-[1.2]">
+                              <a
+                                href="single-property-6.html"
+                                className="!tw-text-[20px]"
+                              >
+                                {property.region}
+                              </a>
+                            </h5>
                             <h6>
-                              120m<sup>2</sup>
+                              {Number(property.price).toLocaleString("fr-Fr", {
+                                style: "currency",
+                                currency: "XOF",
+                              })}
+                              <small>/ start from</small>
                             </h6>
-                          </li>
-                        </ul>
+                          </div>
+                          <button
+                            type="button"
+                            className="btn btn-gradient color-6 mt-3"
+                            onClick={() =>
+                              console.log(
+                                "document.location='single-property-8.html'"
+                              )
+                            }
+                          >
+                            Details
+                          </button>
+                        </div>
+                        <div className="overlay-option">
+                          <ul>
+                            <li className="!tw-flex !tw-flex-col">
+                              <span>Lits</span>
+                              <h6>{property.beds}</h6>
+                            </li>
+                            <li className="!tw-flex !tw-flex-col">
+                              <span>Toilettes</span>
+                              <h6>{property.baths}</h6>
+                            </li>
+                            <li className="!tw-flex !tw-flex-col">
+                              <span>Chambres</span>
+                              <h6>{property.rooms}</h6>
+                            </li>
+                            <li className="!tw-flex !tw-flex-col">
+                              <span>Superficie</span>
+                              <h6>
+                                {property.area}m<sup>2</sup>
+                              </h6>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div
-                className="col-xl-4 col-md-6 wow fadeInUp"
-                data-wow-delay="200ms"
-              >
-                <div className="property-box">
-                  <div className="property-image">
-                    <a
-                      //   style={{
-                      //     backgroundImage: `url(${Img2})`,
-                      //   }}
-                      className="tw-bg-cover tw-block tw-bg-[url('/images/1.jpg')] tw-bg-[center_center] tw-bg-no-repeat bg-size"
-                    >
-                      {/* <img src="/images/1.jpg" className="bg-img" alt="" /> */}
-                      <div className="labels-left">
-                        <div>
-                          <span className="label label-dark">no fees</span>
-                        </div>
-                        <span className="label label-success">open house</span>
-                      </div>
-                    </a>
-                    <div className="bottom-property">
-                      <div className="d-flex">
-                        <div>
-                          <h5>
-                            <a href="single-property-6.html">Orchard House</a>
-                          </h5>
-                          <h6>
-                            $14,520 <small>/ start from</small>
-                          </h6>
-                        </div>
-                        <button
-                          type="button"
-                          className="btn btn-gradient color-6 mt-3"
-                          onClick={() =>
-                            console.log(
-                              "document.location='single-property-8.html'"
-                            )
-                          }
-                        >
-                          Details
-                        </button>
-                      </div>
-                      <div className="overlay-option">
-                        <ul>
-                          <li>
-                            <span>Beds</span>
-                            <h6>2</h6>
-                          </li>
-                          <li>
-                            <span>Baths</span>
-                            <h6>1</h6>
-                          </li>
-                          <li>
-                            <span>Balcony</span>
-                            <h6>2</h6>
-                          </li>
-                          <li>
-                            <span>Area</span>
-                            <h6>
-                              480m<sup>2</sup>
-                            </h6>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="col-xl-4 col-md-6 wow fadeInUp"
-                data-wow-delay="300ms"
-              >
-                <div className="property-box">
-                  <div className="property-image">
-                    <a
-                      //   style={{
-                      //     backgroundImage: `url(/images/others/1.png)`,
-                      //   }}
-                      className="tw-bg-cover tw-block tw-bg-[center_center] tw-bg-[url('/images/1.jpg')] tw-bg-no-repeat bg-size"
-                    >
-                      {/* <img src="/images/3.jpg" className="bg-img" alt="" /> */}
-                      <div className="labels-left">
-                        <span className="label label-shadow">Sold</span>
-                      </div>
-                    </a>
-                    <div className="bottom-property">
-                      <div className="d-flex">
-                        <div>
-                          <h5>
-                            <a href="single-property-6.html">Sea Breezes</a>
-                          </h5>
-                          <h6>
-                            $12,200 <small>/ start from</small>
-                          </h6>
-                        </div>
-                        <button
-                          type="button"
-                          className="btn btn-gradient color-6 mt-3"
-                          onClick={() =>
-                            console.log(
-                              "document.location='single-property-8.html'"
-                            )
-                          }
-                        >
-                          Details
-                        </button>
-                      </div>
-                      <div className="overlay-option">
-                        <ul>
-                          <li>
-                            <span>Beds</span>
-                            <h6>2</h6>
-                          </li>
-                          <li>
-                            <span>Baths</span>
-                            <h6>1</h6>
-                          </li>
-                          <li>
-                            <span>Balcony</span>
-                            <h6>0</h6>
-                          </li>
-                          <li>
-                            <span>Area</span>
-                            <h6>
-                              220m<sup>2</sup>
-                            </h6>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
