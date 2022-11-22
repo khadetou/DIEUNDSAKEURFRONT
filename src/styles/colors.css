@@ -5689,7 +5689,7 @@ input[type="radio"].radio_animated {
   color: #000000;
 }
 .feature-section .feature-1 .feature-wrapper .property-details ul li img {
-  height: 16px;
+  width: 16px;
   display: inline-block;
   margin-right: 7px;
 }

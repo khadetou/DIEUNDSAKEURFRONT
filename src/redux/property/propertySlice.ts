@@ -6,6 +6,7 @@ import propertyService from "./propertyService";
 interface PropertyState {
   properties: any[];
   property: null;
+  topProperties: any[];
   page: number;
   pages: number;
   isError: boolean;
@@ -15,6 +16,7 @@ interface PropertyState {
 }
 const initialState: PropertyState = {
   properties: [],
+  topProperties: [],
   property: null,
   page: 0,
   pages: 0,
@@ -57,6 +59,23 @@ export const getAllProperty = createAsyncThunk(
         error.message ||
         error.toString();
 
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+// GET TOP PROPERTY
+export const getTopProperties = createAsyncThunk(
+  "property/getTopAll",
+  async (_, thunkAPI) => {
+    try {
+      return await propertyService.getTopProperties();
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -179,6 +198,7 @@ export const propertySlice = createSlice({
     builder
       .addCase(HYDRATE, (state, action) => {
         state.properties = action.payload.property.properties;
+        state.topProperties = action.payload.property.topProperties;
         state.property = action.payload.property.property;
         state.isError = action.payload.property.isError;
         state.isLoading = action.payload.property.isLoading;
@@ -211,6 +231,18 @@ export const propertySlice = createSlice({
         state.properties = action.payload.properties;
       })
       .addCase(getAllProperty.rejected, (state: any, action: any) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getTopProperties.pending, (state: any) => {
+        state.isLoading = true;
+      })
+      .addCase(getTopProperties.fulfilled, (state: any, action: any) => {
+        state.isLoading = false;
+        state.topProperties = action.payload;
+      })
+      .addCase(getTopProperties.rejected, (state: any, action: any) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

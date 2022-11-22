@@ -112,6 +112,13 @@ const deleteProperty = async (id: string, token: any) => {
   return data;
 };
 
+// GET TOP PROPERTIES
+const getTopProperties = async () => {
+  const { data } = await axios.get(`${API_URL}/property/top-rated`);
+
+  return data;
+};
+
 const propertyService = {
   createProperty,
   deleteProperty,
@@ -120,5 +127,6 @@ const propertyService = {
   updateProperty,
   getPropertyById,
   getMyProperty,
+  getTopProperties,
 };
 export default propertyService;
