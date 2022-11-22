@@ -914,7 +914,14 @@ const PropertyInfoRent = () => {
               </div>
             </div>
           </div>
-          <Sidebare />
+          <Sidebare
+            checkInDate={checkInDate}
+            checkOutDate={checkOutDate}
+            isNotLaptop={isNotLaptop}
+            onChange={onChange}
+            setCheckInDate={setCheckInDate}
+            setCheckOutDate={setCheckOutDate}
+          />
         </div>
       </div>
     </section>

@@ -1,33 +1,30 @@
-import React, { useState } from "react";
+import React, { Dispatch, FC, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 import DatePicker from "react-datepicker";
 
-const Sidebare = () => {
-  const [checkInDate, setCheckInDate] = useState<Date | null>(new Date());
-  const [checkOutDate, setCheckOutDate] = useState<Date | null>(new Date());
-  const [daysOfStay, setDaysOfStay] = useState(0);
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  const [isNotLaptop, setIsNotLaptop] = useState(false);
-  const onChange = (dates: [Date | null, Date | null]) => {
-    const [checkInDate, checkOutDate] = dates;
-    console.log(checkInDate);
-    setCheckInDate(checkInDate);
-    setCheckOutDate(checkOutDate);
-    if (checkInDate && checkOutDate) {
-      const date1: any = new Date(checkOutDate);
-      const date2: any = new Date(checkInDate);
-      const days = Math.floor((date1 - date2) / 86400000 + 1);
-      setDaysOfStay(days);
-      console.log(days);
-    }
-  };
+interface SidebareProps {
+  checkInDate: Date | null;
+  setCheckInDate: Dispatch<React.SetStateAction<Date | null>>;
+  checkOutDate: Date | null;
+  setCheckOutDate: Dispatch<React.SetStateAction<Date | null>>;
+  isNotLaptop: boolean;
+  onChange: (dates: [Date | null, Date | null]) => void;
+}
+const Sidebare: FC<SidebareProps> = ({
+  checkInDate,
+  checkOutDate,
+  isNotLaptop,
+  setCheckInDate,
+  setCheckOutDate,
+  onChange,
+}) => {
   return (
     <div className="col-xl-3 col-lg-4">
       <div className="left-sidebar !tw-p-6 sticky-cls single-sidebar">
         <div className="filter-cards">
           <div className="advance-card">
-            <div className="tw-flex tw-justify-between">
+            <div className="tw-flex tw-justify-between tw-flex-wrap">
               <h6 className="!tw-font-bold !tw-text-base">
                 {Number(100000).toLocaleString("fr-Fr", {
                   style: "currency",
@@ -47,7 +44,7 @@ const Sidebare = () => {
           <div className="advance-card !tw-mt-2">
             <div className="row gx-2 date-picker">
               <div className="col-12">
-                <div className="dropdown !tw-border-[#797474] !tw-rounded-md tw-p-2">
+                <div className="dropdown !tw-border-[#797474] !tw-rounded-md  tw-p-2">
                   <div className="tw-flex tw-justify-center tw-pt-3 ">
                     <span className="tw-font-semibold tw-pr-2  tw-border-r">
                       Check In

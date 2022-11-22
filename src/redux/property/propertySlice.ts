@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+import { Data } from "utils/interface";
 import propertyService from "./propertyService";
 
 interface PropertyState {
@@ -45,13 +46,9 @@ export const createProperty = createAsyncThunk(
 // GET ALL PROPERTY
 export const getAllProperty = createAsyncThunk(
   "property/getAll",
-  async (data: any, thunkAPI: any) => {
+  async (data: Data, thunkAPI) => {
     try {
-      return await propertyService.getAllProperty(
-        data.req,
-        data.keyword,
-        data.pageNumber
-      );
+      return await propertyService.getAllProperty(data);
     } catch (error: any) {
       const message =
         (error.response &&
@@ -69,7 +66,6 @@ export const getAllProperty = createAsyncThunk(
 export const updateProperty = createAsyncThunk(
   "property/update",
   async (propertyData: any, thunkAPI: any) => {
-    console.log(propertyData);
     try {
       const token = thunkAPI.getState().auth.token;
       const { id } = propertyData;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "utils/index";
+import { Data } from "utils/interface";
 
 // CREATE PROPERTY
 const createProperty = async (propertyData: any, token: string) => {
@@ -18,13 +19,24 @@ const createProperty = async (propertyData: any, token: string) => {
 };
 
 // GET ALL PRODUCTS
-const getAllProperty = async (
-  req?: any,
-  keyword: string = "",
-  pageNumber = ""
-) => {
+const getAllProperty = async (datas: Data) => {
+  const {
+    bath,
+    beds,
+    keyword,
+    location,
+    max,
+    maxa,
+    min,
+    mina,
+    pageNumber,
+    region,
+    rooms,
+    status,
+    type,
+  } = datas;
   const { data } = await axios.get(
-    `${API_URL}/property?keyword=${keyword}&pageNumber=${pageNumber}`
+    `${API_URL}/property?keyword=${keyword}&pageNumber=${pageNumber}&type=${type}&status=${status}&min=${min}&max=${max}&mina=${mina}&maxa=${maxa}$bath=${bath}$beds=${beds}$rooms=${rooms}&region=${region}&location=${location}`
   );
 
   return data;
