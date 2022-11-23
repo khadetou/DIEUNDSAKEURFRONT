@@ -25,56 +25,14 @@ const Listing = () => {
                   <i className="fas fa-angle-down ms-lg-3 ms-2"></i>
                 </span>
                 <div className="dropdown-menu text-start">
-                  <a className="dropdown-item" href="javascript:void(0)">
-                    Sort by Newest
-                  </a>
-                  <a className="dropdown-item" href="javascript:void(0)">
-                    Sort by Oldest
-                  </a>
-                  <a className="dropdown-item" href="javascript:void(0)">
-                    Sory by featured
-                  </a>
-                  <a className="dropdown-item" href="javascript:void(0)">
-                    Sort by price (Low to high)
-                  </a>
+                  <a className="dropdown-item">Sort by Newest</a>
+                  <a className="dropdown-item">Sort by Oldest</a>
+                  <a className="dropdown-item">Sory by featured</a>
+                  <a className="dropdown-item">Sort by price (Low to high)</a>
                 </div>
               </div>
             </li>
-            <li className="collection-grid-view">
-              <ul>
-                <li>
-                  <img
-                    src="/images/icon/2.png"
-                    alt=""
-                    className="product-2-layout-view"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="/images/icon/3.png"
-                    alt=""
-                    className="product-3-layout-view"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="/images/icon/4.png"
-                    alt=""
-                    className="product-4-layout-view"
-                  />
-                </li>
-              </ul>
-            </li>
-            <li className="grid-btn active">
-              <a href="javascript:void(0)" className="grid-layout-view">
-                <i data-feather="grid"></i>
-              </a>
-            </li>
-            <li className="list-btn">
-              <a href="javascript:void(0)" className="list-layout-view">
-                <i data-feather="list"></i>
-              </a>
-            </li>
+
             <li className="d-lg-none d-block">
               <div>
                 <h6 className="mb-0 mobile-filter font-roboto">
@@ -93,45 +51,31 @@ const Listing = () => {
           ))}
         </div>
       </div>
-      <nav className="theme-pagination">
+      {/* <nav className="theme-pagination">
         <ul className="pagination">
           <li className="page-item">
-            <a
-              className="page-link"
-              href="javascript:void(0)"
-              aria-label="Previous"
-            >
+            <a className="page-link" aria-label="Previous">
               <span aria-hidden="true">«</span>
               <span className="sr-only">Previous</span>
             </a>
           </li>
           <li className="page-item active">
-            <a className="page-link" href="javascript:void(0)">
-              1
-            </a>
+            <a className="page-link">1</a>
           </li>
           <li className="page-item">
-            <a className="page-link" href="javascript:void(0)">
-              2
-            </a>
+            <a className="page-link">2</a>
           </li>
           <li className="page-item">
-            <a className="page-link" href="javascript:void(0)">
-              3
-            </a>
+            <a className="page-link">3</a>
           </li>
           <li className="page-item">
-            <a
-              className="page-link"
-              href="javascript:void(0)"
-              aria-label="Next"
-            >
+            <a className="page-link" aria-label="Next">
               <span aria-hidden="true">»</span>
               <span className="sr-only">Next</span>
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </div>
   );
 };
