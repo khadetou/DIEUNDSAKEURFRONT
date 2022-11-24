@@ -1,5 +1,6 @@
 import { useAppSelector } from "hooks/index";
 import moment from "moment";
+import Link from "next/link";
 
 const PropertySection = () => {
   const { properties } = useAppSelector((store) => store.property);
@@ -65,17 +66,13 @@ const PropertySection = () => {
                               <small>/ start from</small>
                             </h6>
                           </div>
-                          <button
+                          <Link
                             type="button"
                             className="btn btn-gradient color-6 mt-3"
-                            onClick={() =>
-                              console.log(
-                                "document.location='single-property-8.html'"
-                              )
-                            }
+                            href={`/property/sales/${property._id}`}
                           >
                             Details
-                          </button>
+                          </Link>
                         </div>
                         <div className="overlay-option">
                           <ul>

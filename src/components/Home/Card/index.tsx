@@ -3,6 +3,7 @@ import Slick, { Settings } from "react-slick";
 import { Shuffle, Camera, Heart } from "react-feather";
 import Image from "next/image";
 import moment from "moment";
+import Link from "next/link";
 
 const Card = (props: any) => {
   const settings: Settings = {
@@ -32,6 +33,7 @@ const Card = (props: any) => {
     baths,
     area,
     createdAt,
+    _id,
   } = props;
 
   return (
@@ -133,13 +135,13 @@ const Card = (props: any) => {
           </ul>
           <div className="property-btn d-flex">
             <span>{moment(createdAt).format("LL")}</span>
-            <button
+            <Link
               type="button"
-              onClick={() => console.log("first")}
+              href={`/property/rents/${_id}`}
               className="btn btn-dashed btn-pill color-6"
             >
               Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>
