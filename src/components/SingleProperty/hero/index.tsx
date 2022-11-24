@@ -147,10 +147,14 @@ const Hero = () => {
                 <span>/ start From</span>
               </h2>
               <div className="feature-label">
-                <span className="btn btn-dashed color-2 btn-pill">Wi-fi</span>
-                <span className="btn btn-dashed color-2 ms-1 btn-pill">
-                  Swimming Pool
-                </span>
+                {property.internet && (
+                  <span className="btn btn-dashed color-2 btn-pill">Wi-fi</span>
+                )}
+                {property.pool && (
+                  <span className="btn btn-dashed color-2 ms-1 btn-pill">
+                    Swimming Pool
+                  </span>
+                )}
               </div>
             </div>
           </div>

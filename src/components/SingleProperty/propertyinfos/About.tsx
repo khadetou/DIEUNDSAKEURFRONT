@@ -1,4 +1,8 @@
+import { useAppSelector } from "hooks/index";
+
 const About = () => {
+  const { property } = useAppSelector((store) => store.property);
+  const descriptions = property.description.split("\n\n", 3);
   return (
     <div className="desc-box">
       <div className="menu-top" id="searchBar">
@@ -6,7 +10,7 @@ const About = () => {
           <ul className="nav">
             <li className="active">
               <a className="" href="#about">
-                about
+                A Propos
               </a>
             </li>
             <li>
@@ -46,24 +50,13 @@ const About = () => {
         <h4>Property Brief</h4>
         <div className="row">
           <div className="col-sm-4">
-            <p>
-              Residences can be classified by and how they are connected to
-              neighbouring residences and land. Different types of housing
-              tenure can be used for the same physical type.
-            </p>
+            <p>{descriptions[0]}</p>
           </div>
           <div className="col-sm-4">
-            <p>
-              connected residences might be owned by a single entity and leased
-              out, or owned separately with an agreement covering the
-              relationship between units and common.
-            </p>
+            <p>{descriptions[2]}</p>
           </div>
           <div className="col-sm-4">
-            <p>
-              they are connected to neighbouring residences and land. Different
-              types of housing tenure can be used for the same physical type.
-            </p>
+            <p>{descriptions[3]}</p>
           </div>
         </div>
       </div>

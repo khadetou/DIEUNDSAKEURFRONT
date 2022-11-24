@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useAppSelector } from "hooks/index";
+import React, { useEffect, useState, useRef, createRef } from "react";
 import Slick, { Settings } from "react-slick";
+import Image from "next/image";
 
 const Gallery = () => {
   useEffect(() => {
@@ -9,7 +11,7 @@ const Gallery = () => {
       parent?.setAttribute("style", `background-image: url(${src})`);
     });
   }, []);
-
+  const { property } = useAppSelector((store) => store.property);
   const images = [
     "/images/property/4.jpg",
     "/images/property/3.jpg",
@@ -33,7 +35,7 @@ const Gallery = () => {
     dots: false,
     infinite: true,
     arrows: false,
-    slidesToShow: 8,
+    slidesToShow: property.images.length,
     draggable: true,
     slidesToScroll: 1,
     swipeToSlide: true,
@@ -41,6 +43,14 @@ const Gallery = () => {
   };
   const [nav1, setNav1] = useState<Slick | null>(null);
   const [nav2, setNav2] = useState<Slick | null>(null);
+  const refImg = useRef<any[]>(property.images.map((_: any) => createRef()));
+
+  useEffect(() => {
+    refImg.current.forEach((children: any) => {
+      const child = children.current?.children[0] as HTMLElement;
+      child.setAttribute("style", `height: ${child.offsetWidth}px`);
+    });
+  }, []);
 
   return (
     <div className="desc-box">
@@ -53,23 +63,39 @@ const Gallery = () => {
             {...settings}
             className="gallery-for"
           >
-            {images.map((img, key) => (
+            {property.images.map((img: any, key: any) => (
               <div>
-                <div className="bg-size " key={key}>
-                  <img src={img} className="bg-img !tw-hidden" alt="" />
+                <div
+                  className="bg-size tw-bg-cover tw-bg-[center_center] tw-bg-no-repeat tw-block "
+                  key={key}
+                >
+                  <Image
+                    src={img.url}
+                    width={img.width}
+                    height={img.height}
+                    className="bg-img !tw-hidden"
+                    alt=""
+                  />
                 </div>
               </div>
             ))}
           </Slick>
+
           <Slick
             asNavFor={nav1!}
             ref={(slider) => setNav2(slider)}
             {...settingsNav}
             className="gallery-nav "
           >
-            {images.map((img, key) => (
-              <div key={key} className="tw-px-[5px]">
-                <img src={img} className="img-fluid " alt="" />
+            {property.images.map((img: any, key: any) => (
+              <div key={key} ref={refImg.current[key]} className="tw-px-[5px]">
+                <Image
+                  src={img.url}
+                  width={img.width}
+                  height={img.height}
+                  className={`img-fluid`}
+                  alt=""
+                />
               </div>
             ))}
           </Slick>
